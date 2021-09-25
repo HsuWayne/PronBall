@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>計分板．乒乓棒球</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../fontawesome-free-5.15.3-web/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Start header -->
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <div class="navbar-logo d-inline-block justify-content-end"></div>
+                    <span>乒乓棒球</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto text-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">首頁<br>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="rule.html">規則<br>How to play</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="scoreboard.html">計分板<br>Scoreboard</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                統計數據<br>Stats
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="stats.html">本季投手數據</a></li>
+                                <li><a class="dropdown-item" href="stats.html">本季打者數據</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="stats.html">投手生涯數據</a></li>
+                                <li><a class="dropdown-item" href="stats.html">打者生涯數據</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End header -->
+
+    <!-- Start section -->
+    <section>
+        <div class="scoreboard_form" id="scoreboard_form">
+            <div class="container mt-3 py-3">
+                <div class="form_title">比賽及選手資訊登錄</div>
+                <form class="row was-validated" onsubmit="playerListSubmit();return false;">
+                    <div class="bg-secondary bg-opacity-25 py-3 px-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="inning" class="form-label">比賽局數</label>
+                                <select id="inning" class="form-select" aria-label="Inning select">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9" selected>9</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-info bg-opacity-25 py-3 px-3">
+                        <div class="form_subtitle">登錄主隊球員資訊</div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="homePitcherSerialNum" class="form-label">背號(0~99)</label>
+                            </div>
+                            <div class="col-8">
+                                <label for="homePitcher" class="form-label">主隊先發投手姓名</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <input type="number" min="0" max="99" step="1" class="form-control"
+                                    id="homePitcherSerialNum" required>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="homePitcher" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 py-3">
+                                <label for="homeBatterNum" class="form-label">主隊打者人數</label>
+                                <select id="homeBatterNum" class="form-select" required
+                                    aria-label="homeBatterNum select">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="form-label">背號(0~99)</label>
+                            </div>
+                            <div class="col-8">
+                                <label class="form-label">主隊打者姓名</label>
+                            </div>
+                        </div>
+                        <div class="row" id="homeBatterAdd">
+                            <!-- <label class="form-label">1棒</label>
+                            <div class="col-4">
+                                <input type="number" min="0" max="99" step="1" class="form-control"
+                                    id="homeBatterSerialNum1" required>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="homeBatter1" required>
+                            </div> -->
+                            <!-- 測試 -->
+                            <label class="form-label">1棒</label>
+                            <div class="col-4">
+                                <input type="number" min="0" max="99" step="1" class="form-control"
+                                    id="homeBatterSerialNum1" required>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="homeBatter1" required>
+                            </div>
+                            <label class="form-label">2棒</label>
+                            <div class="col-4">
+                                <input type="number" min="0" max="99" step="1" class="form-control"
+                                    id="homeBatterSerialNum2" required>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="homeBatter2" required>
+                            </div>
+                            <label class="form-label">3棒</label>
+                            <div class="col-4">
+                                <input type="number" min="0" max="99" step="1" class="form-control"
+                                    id="homeBatterSerialNum3" required>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="homeBatter3" required>
+                            </div>
+                            <!-- 測試 -->
+                        </div>
+                    </div>
+                    <div class="bg-danger bg-opacity-25 py-3 px-3">
+                        <div class="form_subtitle">登錄客隊球員資訊</div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="awayPitcherSerialNum" class="form-label">背號(0~99)</label>
+                            </div>
+                            <div class="col-8">
+                                <label for="awayPitcher" class="form-label">客隊先發投手姓名</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <input type="number" min="0" max="99" step="1" class="form-control"
+                                    id="awayPitcherSerialNum" required>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="awayPitcher" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 py-3">
+                                <label for="awayBatterNum" class="form-label">客隊打者人數</label>
+                                <select id="awayBatterNum" class="form-select" required
+                                    aria-label="awayBatterNum select">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="form-label">背號(0~99)</label>
+                            </div>
+                            <div class="col-8">
+                                <label class="form-label">客隊打者姓名</label>
+                            </div>
+                        </div>
+                        <div class="row" id="awayBatterAdd">
+                            <!-- <label class="form-label">1棒</label>
+                            <div class="col-4">
+                                <input type="number" min="0" max="99" step="1" class="form-control"
+                                    id="awayBatterSerialNum1" required>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="awayBatter1" required>
+                            </div> -->
+                            <!-- 測試 -->
+                            <label class="form-label">1棒</label>
+                            <div class="col-4">
+                                <input type="number" min="0" max="99" step="1" class="form-control"
+                                    id="awayBatterSerialNum1" required>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="awayBatter1" required>
+                            </div>
+                            <label class="form-label">2棒</label>
+                            <div class="col-4">
+                                <input type="number" min="0" max="99" step="1" class="form-control"
+                                    id="awayBatterSerialNum2" required>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="awayBatter2" required>
+                            </div>
+                            <label class="form-label">3棒</label>
+                            <div class="col-4">
+                                <input type="number" min="0" max="99" step="1" class="form-control"
+                                    id="awayBatterSerialNum3" required>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="awayBatter3" required>
+                            </div>
+                            <!-- 測試 -->
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-3 offset-9">
+                            <button id="scoreboard_form_submit" class="btn btn-primary" type="submit">送出</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="scoreboard">
+            <div class="container">
+                <div class="row scoreboard_nav">
+                    <div id="home_score" class="col-4 bg-info bg-opacity-75 text-center">主：0</div>
+                    <div id="pitcher_status" class="col-8 bg-secondary bg-opacity-50 status">
+                        投打資訊
+                    </div>
+                </div>
+                <div class="row scoreboard_nav">
+                    <div id="away_score" class="col-4 bg-danger bg-opacity-75 text-center">客：0</div>
+                    <div id="batter_status" class="col-8 bg-secondary bg-opacity-25 status">
+                        投打資訊
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2 d-flex align-items-center justify-content-center">
+                        <div id="inningCount" class="scoreboard_inningCount">1</div>
+                        <i id="top_half" class="fas fa-caret-up scoreboard_inningCount"></i>
+                        <i id="bottom_half" class="fas fa-caret-down scoreboard_inningCount"></i>
+                    </div>
+                    <div class="col-3">
+                        <div class="row d-flex align-items-center justify-content-start scoreboard_outCount">
+                            <div class="col-4">OUT:</div>
+                            <div class="col-1">
+                                <div id="one_out"></div>
+                            </div>
+                            <div class="col-1">
+                                <div id="two_out"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 offset-3">
+                        <div class="row scoreboard_ballCount d-flex align-items-center">
+                            <div class="col-3 text-center">S:</div>
+                            <div class="col-3 offset-3">
+                                <div id="strike_two" class="scoreboard_ballStrike"></div>
+                            </div>
+                            <div class="col-3">
+                                <div id="strike_one" class="scoreboard_ballStrike"></div>
+                            </div>
+                        </div>
+                        <div class="row scoreboard_ballCount d-flex align-items-center">
+                            <div class="col-3 text-center">B:</div>
+                            <div class="col-3">
+                                <div id="ball_three" class="scoreboard_ballBall"></div>
+                            </div>
+                            <div class="col-3">
+                                <div id="ball_two" class="scoreboard_ballBall"></div>
+                            </div>
+                            <div class="col-3">
+                                <div id="ball_one" class="scoreboard_ballBall"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row scoreboard_bat_area">
+                            <div id="ball_area_1" class="col-5 scoreboard_bat_area_ball scoreboard_elements">壞球</div>
+                            <div id="strike_area" class="col-2 scoreboard_bat_area_strike scoreboard_elements">好球</div>
+                            <div id="ball_area_2" class="col-5 scoreboard_bat_area_ball scoreboard_elements">壞球</div>
+                        </div>
+                        <div class="row scoreboard_foul_area">
+                            <div id="foul_area" class="col-12 scoreboard_elements">界外</div>
+                        </div>
+                        <div class="row">
+                            <div id="ground_area_1" class="col-6 scoreboard_ground_area scoreboard_elements">
+                                滾地出局區<br><br>犧牲觸擊失敗區</div>
+                            <div id="ground_area_2" class="col-6 scoreboard_ground_area scoreboard_elements">
+                                滾地出局區<br><br>犧牲觸擊成功區</div>
+                        </div>
+                        <div class="row">
+                            <div id="fly_area_1" class="col-6 scoreboard_fly_area scoreboard_elements">
+                                直接一壘安打區<br><br>強力飛球區<br>(三壘跑者推進)
+                            </div>
+                            <div id="fly_area_2" class="col-6 scoreboard_fly_area scoreboard_elements">
+                                直接一壘安打區<br><br>強力飛球區<br>(二三壘跑者推進)
+                            </div>
+                        </div>
+                        <div class="row scoreboard_single_area">
+                            <div id="single_area" class="col-12 scoreboard_elements">一壘安打區<br>(飛球落地)</div>
+                        </div>
+                        <div class="row">
+                            <div id="triple_area" class="col-2 scoreboard_triple_area scoreboard_elements">三壘</div>
+                            <div id="double_area" class="col-10 scoreboard_double_area scoreboard_elements">二壘安打區</div>
+                        </div>
+                        <div class="row scoreboard_homerun_area">
+                            <div id="homerun_area" class="col-12 scoreboard_elements">全壘打</div>
+                        </div>
+                        <div id="pitcher_area"
+                            class="pitcher scoreboard_elements d-flex align-items-center justify-content-center"
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="更換投手"></div>
+                        <div id="batter_area"
+                            class="batter scoreboard_elements d-flex align-items-center justify-content-center"></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row scoreboard_court">
+                            <div class="col-12 d-flex justify-content-center align-items-center">
+                                <div class="court">
+                                    <div class="base base_1">
+                                        <p id="base_1"></p>
+                                    </div>
+                                    <div class="base base_2">
+                                        <p id="base_2"></p>
+                                    </div>
+                                    <div class="base base_3">
+                                        <p id="base_3"></p>
+                                    </div>
+                                    <div class="base base_4">
+                                        <p id="base_4"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row bg-info bg-opacity-50">
+                            <div id="home_pitcher" class="col-12 scoreboard_teamsInfo_pitcher"></div>
+                            <div id="home_batter" class="col-12 scoreboard_teamsInfo_batter"></div>
+                        </div>
+                        <div class="row bg-danger bg-opacity-50">
+                            <div id="away_pitcher" class="col-12 scoreboard_teamsInfo_pitcher"></div>
+                            <div id="away_batter" class="col-12 scoreboard_teamsInfo_batter"></div>
+                        </div>
+                        <div class="row scoreboard_btn_group">
+                            <div class="col-6 m-auto d-flex justify-content-center">
+                                <button type="button" id="strike_btn" class="btn btn-danger" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="好球">S</button>
+                            </div>
+                            <div class="col-6 m-auto d-flex justify-content-center">
+                                <button type="button" id="ball_btn" class="btn btn-success" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="壞球">B</button>
+                            </div>
+                            <div class="col-6 m-auto d-flex justify-content-center">
+                                <button type="button" id="foul_btn" class="btn btn-secondary" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="界外">F</button>
+                            </div>
+                            <div class="col-6 m-auto d-flex justify-content-center">
+                                <button type="button" id="hit_btn" class="btn btn-warning" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="安打">H</button>
+                            </div>
+                            <div class="col-6 m-auto d-flex justify-content-center">
+                                <button type="button" id="sacrifice_hits" class="btn btn-primary"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="犧牲觸擊">SH</button>
+                            </div>
+                            <div class="col-6 m-auto d-flex justify-content-center">
+                                <button type="button" id="out_btn" class="btn btn-info" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="出局">O</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="gameEnd" tabindex="-1" aria-labelledby="gameEndLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content gameEnd">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="gameEndLabel">比賽結束！</h5>
+                        <button type="button" OnClick="location.href='index.html'" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="scoreboard_result" id="scoreboard_result">
+                            <ul class="nav nav-pills mt-3" id="rulesTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active result_home" id="site-tab" data-bs-toggle="tab"
+                                        data-bs-target="#site" type="button" role="tab" aria-controls="site"
+                                        aria-selected="true">主隊成績</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link result_away" id="rule-tab" data-bs-toggle="tab"
+                                        data-bs-target="#rule" type="button" role="tab" aria-controls="rule"
+                                        aria-selected="false">客隊成績</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="rulesTabContent">
+                                <div class="tab-pane fade show active" id="site" role="tabpanel"
+                                    aria-labelledby="site-tab">
+                                    <table class="table table-striped caption-top table-bordered">
+                                        <caption>投手</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">背號</th>
+                                                <th scope="col">姓名</th>
+                                                <th scope="col">IP</th>
+                                                <th scope="col">H</th>
+                                                <th scope="col">HR</th>
+                                                <th scope="col">ER</th>
+                                                <th scope="col">BB</th>
+                                                <th scope="col">SO</th>
+                                                <th scope="col">球數</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="home_pitcher_result">
+                                            <tr>
+                                                <th scope="row">8</th>
+                                                <td>徐維紳</td>
+                                                <td>9.0</td>
+                                                <td>5</td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>3</td>
+                                                <td>8</td>
+                                                <td>100(70:30)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-striped caption-top table-bordered">
+                                        <caption>打者</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">背號</th>
+                                                <th scope="col">姓名</th>
+                                                <th scope="col">AB</th>
+                                                <th scope="col">R</th>
+                                                <th scope="col">H</th>
+                                                <th scope="col">HR</th>
+                                                <th scope="col">RBI</th>
+                                                <th scope="col">BB</th>
+                                                <th scope="col">SO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="home_batter_result">
+                                            <tr>
+                                                <th scope="row">8</th>
+                                                <td>徐維紳</td>
+                                                <td>9</td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>1</td>
+                                                <td>3</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="rule" role="tabpanel" aria-labelledby="rule-tab">
+                                    <table class="table table-striped caption-top table-bordered">
+                                        <caption>投手</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">背號</th>
+                                                <th scope="col">姓名</th>
+                                                <th scope="col">IP</th>
+                                                <th scope="col">H</th>
+                                                <th scope="col">HR</th>
+                                                <th scope="col">ER</th>
+                                                <th scope="col">BB</th>
+                                                <th scope="col">SO</th>
+                                                <th scope="col">球數</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="away_pitcher_result">
+                                            <tr>
+                                                <th scope="row">8</th>
+                                                <td>徐維紳</td>
+                                                <td>9.0</td>
+                                                <td>5</td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>3</td>
+                                                <td>8</td>
+                                                <td>100(70:30)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-striped caption-top table-bordered">
+                                        <caption>打者</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">背號</th>
+                                                <th scope="col">姓名</th>
+                                                <th scope="col">AB</th>
+                                                <th scope="col">R</th>
+                                                <th scope="col">H</th>
+                                                <th scope="col">HR</th>
+                                                <th scope="col">RBI</th>
+                                                <th scope="col">BB</th>
+                                                <th scope="col">SO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="away_batter_result">
+                                            <tr>
+                                                <th scope="row">8</th>
+                                                <td>徐維紳</td>
+                                                <td>9</td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>1</td>
+                                                <td>3</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button OnClick="location.href='index.html'" type="button" class="btn btn-primary"
+                            data-bs-dismiss="modal">結束並退出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Start footer -->
+    <footer>
+
+    </footer>
+    <!-- End footer -->
+
+    <!-- javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scoreboard_form.js"></script>
+    <script src="scoreboard.js"></script>
+</body>
+
+</html>

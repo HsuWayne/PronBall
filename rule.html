@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>規則．乒乓棒球</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Start header -->
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <div class="navbar-logo d-inline-block justify-content-end"></div>
+                    <span>乒乓棒球</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto text-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">首頁<br>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="rule.html">規則<br>How to play</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="scoreboard.html">計分板<br>Scoreboard</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                統計數據<br>Stats
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="stats.html">本季投手數據</a></li>
+                                <li><a class="dropdown-item" href="stats.html">本季打者數據</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="stats.html">投手生涯數據</a></li>
+                                <li><a class="dropdown-item" href="stats.html">打者生涯數據</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End header -->
+
+    <!-- Start section -->
+    <section>
+        <div>
+            <div class="container py-1 py-sm-3">
+                <div class="row">
+                    <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                        <ul class="nav nav-pills mt-3" id="rulesTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="site-tab" data-bs-toggle="tab"
+                                    data-bs-target="#site" type="button" role="tab" aria-controls="site"
+                                    aria-selected="true">場地規劃</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="rule-tab" data-bs-toggle="tab" data-bs-target="#rule"
+                                    type="button" role="tab" aria-controls="rule" aria-selected="false">名詞定義</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="rulesTabContent">
+                            <div class="tab-pane fade show active" id="site" role="tabpanel" aria-labelledby="site-tab">
+                                <div class="imgbox text-center sticky-top">
+                                    <img src="pics/rule.jpg" class="img-fluid" alt="...">
+                                </div>
+                                <ul>
+                                    <li>每隊人數<br>投手：1人(可自由更換), 打者：不限人數(固定棒次)</li>
+                                    <li>投打距離<br>9.5 m</li>
+                                    <li>守備配置<br>無捕手或守備人員, 以擊球落點決定安打或出局<br>可自行依場地調整安打範圍及是否增加捕手或守備球員</li>
+                                    <li>好球判定<br>使用 30cm x 30cm 巧拼 4 片, 排成 2 x 2 正方形<br>固定在打者後方 50cm, 離地 50cm,
+                                        以球是否擊中巧拼判定好壞球</li>
+                                    <li>球具器材<br>投手：直徑40mm乒乓球數顆<br>打者：威浮球球棒 +
+                                        擊球面積纏上繃帶(避免乒乓球大量損壞), 可自行更換其他類似塑膠材質球棒
+                                    </li>
+                                    <li>其餘規則同棒球規定, 可視情況自行修改, 以達成同樂目的為目標</li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="rule" role="tabpanel" aria-labelledby="rule-tab">
+                                <div class="imgbox text-center sticky-top">
+                                    <img src="pics/rule.jpg" class="img-fluid" alt="...">
+                                </div>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">規則</th>
+                                            <th scope="col">定義</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">終止狀態</th>
+                                            <td>球已經靜止且沒有任何外力施加的狀態</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">裁定狀態</th>
+                                            <td>可以根據此規則判定球當下應紀錄的狀態</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">無效球</th>
+                                            <td>1. 球從投手投出至球進入終止狀態為止, 無法透過此規則裁定球的狀態, 算無效球<br>
+                                                2. 球從投手投出後觸碰到行進軌跡上任意物品, 以致於無法進入好球帶時, 投手可以提出無效球申訴, 由在場的所有人投票決定是否為無效球</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">好球</th>
+                                            <td>1. 球從投手投出後未觸碰到行進軌跡上任意物品, 最後進入好球帶, 記一好球<br>
+                                                2. 計數未達兩好球時, 打者擊出界外球, 記一好球<br>
+                                                3. 計數達兩好球時, 打者擊出界外球, 不計入好球數, 但記一好球 (例外狀況請參考犧牲觸擊規則)</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">壞球</th>
+                                            <td>球從投手投出後, 打者未擊出球, 球未碰觸到好球帶且為有效球時, 記一壞球</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">界外球</th>
+                                            <td>1. 球被打者擊出後, 觸碰到天花板界外線之前, 裁定為界外球<br>
+                                                2. 球被打者擊出後, 觸碰到地板界外線之前, 裁定為界外球<br>
+                                                3. 球被打者擊出後, 觸碰到兩旁牆壁, 最後落點為一壘線之前, 裁定為界外球</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">一壘安打</th>
+                                            <td>1. 球被打者擊出後, 未觸碰到任何物品, 最後落點在投手線與二壘線之間, 裁定為一壘安打<br>
+                                                2. 球被打者擊出後, 觸碰到任何物品且未進入裁定狀態, 最後落點在一壘線與二壘線之間, 裁定為一壘安打<br>
+                                                3. 球被打者擊出後, 未進入裁定狀態且觸碰到投手, 投手未把球接住, 最後落點在二壘線之前, 裁定為一壘安打<br>
+                                                4. 球被打者擊出後, 觸碰到守備網, 裁定為一壘安打</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">二壘安打</th>
+                                            <td>1. 球被打者擊出後, 未觸碰到任何物品, 最後落點在二壘線與全壘打練之間且未碰觸到之間物品, 裁定為二壘安打<br>
+                                                2. 球被打者擊出後, 觸碰到任何物品且未進入裁定狀態, 最後落點在二壘線與全壘打線之間且未碰觸到之間物品, 裁定為二壘安打<br>
+                                                3. 球被打者擊出後, 未進入裁定狀態且觸碰到投手, 投手未把球接住, 最後落點在二壘線與全壘打線之間且未碰觸到之間物品, 裁定為二壘安打
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">三壘安打</th>
+                                            <td>1. 球被打者擊出後, 未觸碰到任何物品, 最後落點在二壘線與全壘打練之間且碰觸到之間物品, 裁定為三壘安打<br>
+                                                2. 球被打者擊出後, 觸碰到任何物品且未進入裁定狀態, 最後落點在二壘線與全壘打線之間且碰觸到之間物品, 裁定為三壘安打<br>
+                                                3. 球被打者擊出後, 未進入裁定狀態且觸碰到投手, 投手未把球接住, 最後落點在二壘線與全壘打線之間且碰觸到之間物品, 裁定為三壘安打
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">全壘打</th>
+                                            <td>1. 球被打者擊出後, 未觸碰到任何物品, 最後落點在全壘打線之後, 裁定為全壘打<br>
+                                                2. 球被打者擊出後, 觸碰到任何物品且未進入裁定狀態, 最後落點在全壘打線之後, 裁定為全壘打<br>
+                                                3. 球被打者擊出後, 未進入裁定狀態且觸碰到投手, 投手未把球接住, 最後落點在全壘打線之後, 裁定為全壘打</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">四壞保送</th>
+                                            <td>計數達到四壞球時, 記一保送, 打者進壘, 如目標壘包有跑者, 則壘上跑者也進壘, 以此類推</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">三振出局</th>
+                                            <td>計數達到三好球時, 記一出局, 打席結束</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">飛球出局</th>
+                                            <td>1. 球被打者擊出後, 觸碰到天花板界外線之後, 最後落點在投手線之前, 裁定為飛球出局<br>
+                                                2. 球被打者擊出後, 觸碰到天花板界外線之後, 被投手接殺, 裁定為飛球出局<br>
+                                                3. 球被打者擊出後, 觸碰到天花板界外線之後, 最後落點在投手線與一壘線之間, 裁定為強力飛球出局 (請參考高飛犧牲與雙殺守備規則)</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">滾地出局</th>
+                                            <td>1. 球被打者擊出後, 觸碰到地板界外線與投手線之間, 且未觸碰到守備網, 裁定為滾地出局<br>
+                                                2. 球被打者擊出後, 未觸碰到任何物品之後被投手接殺, 裁定為滾地出局</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">高飛犧牲</th>
+                                            <td>1. 球被裁定為強力飛球出局後, 如三壘有跑者, 無條件進壘<br>
+                                                2. 球被裁定為強力飛球出局且落點在投手左側, 如二壘有跑者, 無條件進壘</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">犧牲觸擊</th>
+                                            <td>1. 打者擺出觸擊姿勢擊中球, 彈起高度不超過打者頭部, 球的落點在地板界外線之後且在投手左側, 打者出局, 但壘上所有跑者無條件進壘<br>
+                                                2. 打者擺出觸擊姿勢擊中球, 彈起高度不超過打者頭部, 球的落點在地板界外線之後且在投手右側, 打者出局, 壘上跑者皆不動<br>
+                                                3. 打者擺出觸擊姿勢擊中球, 球的落點在地板界外線之前, 記一好球<br>
+                                                4. 打者擺出觸擊姿勢擊中球, 彈起高度超過打者頭部, 不論落點為何, 記一好球<br>
+                                                5. 打者擺出觸擊姿勢未擊中球, 不論球是否進入好球帶, 記一好球<br>
+                                                6. 上述記一好球, 即使當下計數為兩好球, 仍然增加好球計數, 記三振出局</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">雙殺守備</th>
+                                            <td>1. 球被裁定為滾地出局後, 投手未喊出趨前防守時, 如一壘上有跑者, 則一壘跑者與打者同時出局, 出局數未達本局結束計數時,
+                                                如球的落點在投手左側且二三壘上有跑者, 二三壘上跑者無條件進壘<br>
+                                                2. 球被裁定為滾地出局後, 投手有喊出趨前防守時, 如壘上有需強迫進壘跑者, 則強迫進壘最前面的跑者與打者同時出局,
+                                                出局數未達本局結束計數時, 其餘強迫進壘跑者無條件進壘<br>
+                                                3. 球被裁定為強力飛球出局後, 投手有喊出趨前防守時, 記為一壘安打</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End section -->
+
+    <!-- Start footer -->
+    <footer>
+
+    </footer>
+    <!-- End footer -->
+
+    <!-- javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首頁．乒乓棒球</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Start header -->
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <div class="navbar-logo d-inline-block justify-content-end"></div>
+                    <span>乒乓棒球</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto text-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">首頁<br>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="rule.html">規則<br>How to play</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="scoreboard.html">計分板<br>Scoreboard</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                統計數據<br>Stats
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="stats.html">本季投手數據</a></li>
+                                <li><a class="dropdown-item" href="stats.html">本季打者數據</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="stats.html">投手生涯數據</a></li>
+                                <li><a class="dropdown-item" href="stats.html">打者生涯數據</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End header -->
+
+    <!-- Start section -->
+    <section>
+        <div>
+            <div class="container py-1 py-sm-3">
+                <div class="row">
+                    <div class="col-12 col-md-10 offset-md-1">
+                        <div id="index-carousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button class="active indicators-btn" type="button" data-bs-target="#index-carousel"
+                                    data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"></button>
+                                <button class="indicators-btn" type="button" data-bs-target="#index-carousel"
+                                    data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button class="indicators-btn" type="button" data-bs-target="#index-carousel"
+                                    data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <button class="indicators-btn" type="button" data-bs-target="#index-carousel"
+                                    data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                <button class="indicators-btn" type="button" data-bs-target="#index-carousel"
+                                    data-bs-slide-to="4" aria-label="Slide 5"></button>
+                                <button class="indicators-btn" type="button" data-bs-target="#index-carousel"
+                                    data-bs-slide-to="5" aria-label="Slide 6"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" data-bs-interval="2000">
+                                    <img src="pics/image0.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2000">
+                                    <img src="pics/image1.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2000">
+                                    <img src="pics/image2.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2000">
+                                    <img src="pics/image4.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2000">
+                                    <img src="pics/image6.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2000">
+                                    <img src="pics/image9.jpg" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#index-carousel"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#index-carousel"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-secondary bg-opacity-50">
+            <div class="container py-1 py-sm-3">
+                <div class="row">
+                    <div class="col-12 col-sm-5 offset-sm-0 col-md-6">
+                        <div class="elements">
+                            自從王建民在洋基隊發光發熱，觀看大聯盟比賽變成全民運動，洋基隊球員名字更是如數家珍。可惜在台灣要玩棒球並非易事，除了場地大小限制，球具獲取不易且價格不菲，人數更是難以達到的標準。
+                        </div>
+                    </div>
+                    <div class="col-7 col-sm-7 offset-sm-0 col-md-5 offset-md-1">
+                        <div class="imgbox">
+                            <img src="pics/something.jpeg" class="img-fluid" alt="...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="container py-1 py-sm-3">
+                <div class="row">
+                    <div class="col-12 col-sm-5 order-sm-2 offset-sm-0 col-md-6 offset-md-1">
+                        <div class="elements">
+                            乒乓球輕且易受空氣阻力影響，可輕易投出大聯盟投手等級幅度的變化球，而打擊也不需要太大力氣即可將球打擊出去。乒乓棒球在室內甚至戶外各種場地皆能遊玩，僅需一盒乒乓球及一支球棒(球棒材質可自由發揮)，最少只要兩個人即可進行一場有趣的對戰，可謂適合男女老少的平民運動！
+                        </div>
+                    </div>
+                    <div class="col-7 offset-5 col-sm-7 order-sm-1 offset-sm-0 col-md-5">
+                        <div class="imgbox">
+                            <img src="pics/image11.jpg" class="img-fluid" alt="...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- End section -->
+
+    <!-- Start footer -->
+    <footer>
+
+    </footer>
+    <!-- End footer -->
+
+    <!-- javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
