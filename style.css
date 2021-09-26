@@ -471,6 +471,14 @@ tr {
     }
 }
 
+.batter th,
+.batter td,
+.pitcher th,
+.pitcher td {
+    width: auto;
+    text-align: center;
+}
+
 /* scoreboard_side */
 .scoreboard_court {
     height: 15vh;

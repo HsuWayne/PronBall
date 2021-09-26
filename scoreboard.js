@@ -48,7 +48,7 @@ let awayPitList = [];
 let homeBatList = [];
 let awayBatList = [];
 //結束遊戲
-let gameEndAlert = new bootstrap.Modal(document.getElementById('gameEnd'));
+let gameEnd = new bootstrap.Modal(document.getElementById('gameEnd'));
 
 // $("#pitcher_status").html(pit[0].name + "：IP：" + pit[0].Pitcher.ip() + ", H：" + pit[0].Pitcher.h + ", ER：" + pit[0].Pitcher.er + ", BB：" + pit[0].Pitcher.bbPit + ", SO：" + pit[0].Pitcher.k + ", ：球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
 
@@ -185,6 +185,12 @@ $("#fly_area_2").click(function () {
     result = "ao";
     game(result);
 });
+$("#batter_area").click(function () {
+    $("#at_bat_info").html(`<tr><th scope="row">${atBat[0].serialNum}</th><td>${atBat[0].name}</td><td>${atBat[0].Batter.ab()}</td><td>${atBat[0].Batter.runs}</td><td>${atBat[0].Batter.h()}</td><td>${atBat[0].Batter.homerun}</td><td>${atBat[0].Batter.rbi}</td><td>${atBat[0].Batter.bb}</td><td>${atBat[0].Batter.so}</td></tr>`);
+});
+$("#pitcher_area").click(function () {
+    $("#at_pit_info").html(`<tr><th scope="row">${pit[0].serialNum}</th><td>${pit[0].name}</td><td>${pit[0].Pitcher.ip()}</td><td>${pit[0].Pitcher.h}</td><td>${pit[0].Pitcher.hr}</td><td>${pit[0].Pitcher.er}</td><td>${pit[0].Pitcher.bbPit}</td><td>${pit[0].Pitcher.k}</td><td>${pit[0].Pitcher.pitchNum()}(${pit[0].Pitcher.strike}:${pit[0].Pitcher.ball})</td></tr>`);
+});
 //按鍵
 
 class Pitcher {
@@ -255,6 +261,51 @@ function clearBallCount() {
     $("#ball_three").removeClass("scoreboard_ballBallOn");
 }
 
+function displayPitcher() {
+    $("#home_batter_result").html("");
+    $("#away_batter_result").html("");
+    homePitList.push(homePit[0]);
+    awayPitList.push(awayPit[0]);
+    let pitcherData
+    homePitList.forEach(function (element) {
+        pitcherData = `<tr><th scope="row">${element.serialNum}</th><td>${element.name}</td><td>${element.Pitcher.ip()}</td><td>${element.Pitcher.h}</td><td>${element.Pitcher.hr}</td><td>${element.Pitcher.er}</td><td>${element.Pitcher.bbPit}</td><td>${element.Pitcher.k}</td><td>${element.Pitcher.pitchNum()}(${element.Pitcher.strike}:${element.Pitcher.ball})</td></tr>`;
+        $("#home_pitcher_result").html(pitcherData);
+    });
+    awayPitList.forEach(function (element) {
+        pitcherData = `<tr><th scope="row">${element.serialNum}</th><td>${element.name}</td><td>${element.Pitcher.ip()}</td><td>${element.Pitcher.h}</td><td>${element.Pitcher.hr}</td><td>${element.Pitcher.er}</td><td>${element.Pitcher.bbPit}</td><td>${element.Pitcher.k}</td><td>${element.Pitcher.pitchNum()}(${element.Pitcher.strike}:${element.Pitcher.ball})</td></tr>`;
+        $("#away_pitcher_result").html(pitcherData);
+    });
+}
+
+function displayBatter() {
+    $("#home_batter_result").html("");
+    $("#away_batter_result").html("");
+    let batterData;
+    homeBatList.forEach(function (element) {
+        batterData = `<tr><th scope="row">${element.serialNum}</th><td>${element.name}</td><td>${element.Batter.ab()}</td><td>${element.Batter.runs}</td><td>${element.Batter.h()}</td><td>${element.Batter.homerun}</td><td>${element.Batter.rbi}</td><td>${element.Batter.bb}</td><td>${element.Batter.so}</td></tr>`;
+        $("#home_batter_result").append(batterData);
+    });
+    awayBatList.forEach(function (element) {
+        batterData = `<tr><th scope="row">${element.serialNum}</th><td>${element.name}</td><td>${element.Batter.ab()}</td><td>${element.Batter.runs}</td><td>${element.Batter.h()}</td><td>${element.Batter.homerun}</td><td>${element.Batter.rbi}</td><td>${element.Batter.bb}</td><td>${element.Batter.so}</td></tr>`;
+        $("#away_batter_result").append(batterData);
+    });
+}
+
+function changePitcherSubmit() {
+    pited.push(pit[0]);
+    pit = [new Player($("#newPitcherSerialNum").val(), $("#newPitcher").val())];
+    $("#at_pit_info").html(`<tr><th scope="row">${pit[0].serialNum}</th><td>${pit[0].name}</td><td>${pit[0].Pitcher.ip()}</td><td>${pit[0].Pitcher.h}</td><td>${pit[0].Pitcher.hr}</td><td>${pit[0].Pitcher.er}</td><td>${pit[0].Pitcher.bbPit}</td><td>${pit[0].Pitcher.k}</td><td>${pit[0].Pitcher.pitchNum()}(${pit[0].Pitcher.strike}:${pit[0].Pitcher.ball})</td></tr>`);
+    $("#newPitcherSerialNum").val("");
+    $("#newPitcher").val("");
+}
+
+function gameEndAlert() {
+    displayPitcher();
+    displayBatter();
+    $("#gameEndLabel").html("比賽結束！最終比數 主 " + homePoint + "：客 " + awayPoint);
+    gameEnd.show();
+}
+
 //
 //
 //
@@ -306,9 +357,6 @@ let halfInning = parseInt($("#inning").val()) * 2;
 //
 //
 //
-
-
-
 
 
 function game(result) {
@@ -369,7 +417,7 @@ function game(result) {
                     }
                     if (lastHalfCheck == 1) {
                         if (homePoint > awayPoint) {
-                            alert("比賽結束！！");
+                            gameEndAlert();
                         }
                     }
                 }
@@ -403,7 +451,7 @@ function game(result) {
                 });
                 if (lastHalfCheck == 1) {
                     if (homePoint > awayPoint) {
-                        alert("比賽結束！！");
+                        gameEndAlert();
                     }
                 }
                 runnerBase.splice(0, runnerToHome);
@@ -440,7 +488,7 @@ function game(result) {
         out = 0
         if (lastHalfCheck == 1) {
             if (homePoint < awayPoint) {
-                alert("比賽結束！！");
+                gameEndAlert();
             }
             if (halfInning - halfInningCount == 1) {
                 lastHalfCheck = 0;
@@ -448,7 +496,7 @@ function game(result) {
         }
         if (halfInningCount == halfInning) {
             if (homePoint > awayPoint) {
-                alert("比賽結束！！");
+                gameEndAlert();
             } else {
                 lastHalfCheck = 1;
                 halfInning += 2;
@@ -479,7 +527,6 @@ function game(result) {
 }
 
 $(document).ready(function () {
-    // gameEndAlert.show();
     //名單登錄
     homePit = [new Player($("#homePitcherSerialNum").val(), $("#homePitcher").val())];
     awayPit = [new Player($("#awayPitcherSerialNum").val(), $("#awayPitcher").val())];
@@ -493,9 +540,7 @@ $(document).ready(function () {
     for (i = 1; i <= awayBatterNum; i++) {
         awayBat.push(new Player($(`#awayBatterSerialNum${i}`).val(), $(`#awayBatter${i}`).val()));
     }
-    //投手順序
-    homePitList = [...homePit];
-    awayPitList = [...awayPit];
+
     //打線順序
     homeBatList = [...homeBat];
     awayBatList = [...awayBat];

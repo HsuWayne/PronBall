@@ -7,7 +7,7 @@
     <title>計分板．乒乓棒球</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../fontawesome-free-5.15.3-web/css/all.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.15.3-web/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -342,11 +342,134 @@
                         <div class="row scoreboard_homerun_area">
                             <div id="homerun_area" class="col-12 scoreboard_elements">全壘打</div>
                         </div>
-                        <div id="pitcher_area"
-                            class="pitcher scoreboard_elements d-flex align-items-center justify-content-center"
-                            data-bs-toggle="tooltip" data-bs-placement="top" title="更換投手"></div>
-                        <div id="batter_area"
-                            class="batter scoreboard_elements d-flex align-items-center justify-content-center"></div>
+                        <div>
+                            <div id="pitcher_area"
+                                class="pitcher scoreboard_elements d-flex align-items-center justify-content-center"
+                                data-bs-toggle="modal" data-bs-target="#pitcherInfo"></div>
+                            <div class="modal fade" id="pitcherInfo" tabindex="-1" aria-labelledby="pitcherInfoLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="pitcherInfoLabel">投手資訊</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table table-striped caption-top table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">背號</th>
+                                                        <th scope="col">姓名</th>
+                                                        <th scope="col">IP</th>
+                                                        <th scope="col">H</th>
+                                                        <th scope="col">HR</th>
+                                                        <th scope="col">ER</th>
+                                                        <th scope="col">BB</th>
+                                                        <th scope="col">SO</th>
+                                                        <th scope="col">球數</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="at_pit_info">
+                                                    <tr>
+                                                        <th scope="row"></th>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="container-fluid">
+                                            <form class="row was-validated"
+                                                onsubmit="changePitcherSubmit();return false;">
+                                                <div class="form_subtitle">更換投手</div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <label for="newPitcherSerialNum"
+                                                            class="form-label">背號(0~99)</label>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <label for="newPitcher" class="form-label">投手姓名</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <input type="number" min="0" max="99" step="1"
+                                                            class="form-control" id="newPitcherSerialNum" required>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <input type="text" class="form-control" id="newPitcher"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer mt-3">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">關閉</button>
+                                                    <button type="submit" class="btn btn-primary">更換投手</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div id="batter_area"
+                                class="batter scoreboard_elements d-flex align-items-center justify-content-center"
+                                data-bs-toggle="modal" data-bs-target="#batterInfo"></div>
+                            <div class="modal fade" id="batterInfo" tabindex="-1" aria-labelledby="batterInfoLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="batterInfoLabel">打者資訊</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table table-striped caption-top table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">背號</th>
+                                                        <th scope="col">姓名</th>
+                                                        <th scope="col">AB</th>
+                                                        <th scope="col">R</th>
+                                                        <th scope="col">H</th>
+                                                        <th scope="col">HR</th>
+                                                        <th scope="col">RBI</th>
+                                                        <th scope="col">BB</th>
+                                                        <th scope="col">SO</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="at_bat_info">
+                                                    <tr>
+                                                        <th scope="row"></th>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary"
+                                                data-bs-dismiss="modal">確定</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-3">
                         <div class="row scoreboard_court">
@@ -447,15 +570,15 @@
                                         </thead>
                                         <tbody id="home_pitcher_result">
                                             <tr>
-                                                <th scope="row">8</th>
-                                                <td>徐維紳</td>
-                                                <td>9.0</td>
-                                                <td>5</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                                <td>3</td>
-                                                <td>8</td>
-                                                <td>100(70:30)</td>
+                                                <th scope="row"></th>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -476,15 +599,15 @@
                                         </thead>
                                         <tbody id="home_batter_result">
                                             <tr>
-                                                <th scope="row">8</th>
-                                                <td>徐維紳</td>
-                                                <td>9</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                                <td>1</td>
-                                                <td>3</td>
-                                                <td>2</td>
-                                                <td>2</td>
+                                                <th scope="row"></th>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -507,15 +630,15 @@
                                         </thead>
                                         <tbody id="away_pitcher_result">
                                             <tr>
-                                                <th scope="row">8</th>
-                                                <td>徐維紳</td>
-                                                <td>9.0</td>
-                                                <td>5</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                                <td>3</td>
-                                                <td>8</td>
-                                                <td>100(70:30)</td>
+                                                <th scope="row"></th>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -536,15 +659,15 @@
                                         </thead>
                                         <tbody id="away_batter_result">
                                             <tr>
-                                                <th scope="row">8</th>
-                                                <td>徐維紳</td>
-                                                <td>9</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                                <td>1</td>
-                                                <td>3</td>
-                                                <td>2</td>
-                                                <td>2</td>
+                                                <th scope="row"></th>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>
