@@ -262,18 +262,18 @@ function clearBallCount() {
 }
 
 function displayPitcher() {
-    $("#home_batter_result").html("");
-    $("#away_batter_result").html("");
+    $("#home_pitcher_result").html("");
+    $("#away_pitcher_result").html("");
     homePitList.push(homePit[0]);
     awayPitList.push(awayPit[0]);
-    let pitcherData
+    let pitcherData;
     homePitList.forEach(function (element) {
         pitcherData = `<tr><th scope="row">${element.serialNum}</th><td>${element.name}</td><td>${element.Pitcher.ip()}</td><td>${element.Pitcher.h}</td><td>${element.Pitcher.hr}</td><td>${element.Pitcher.er}</td><td>${element.Pitcher.bbPit}</td><td>${element.Pitcher.k}</td><td>${element.Pitcher.pitchNum()}(${element.Pitcher.strike}:${element.Pitcher.ball})</td></tr>`;
-        $("#home_pitcher_result").html(pitcherData);
+        $("#home_pitcher_result").append(pitcherData);
     });
     awayPitList.forEach(function (element) {
         pitcherData = `<tr><th scope="row">${element.serialNum}</th><td>${element.name}</td><td>${element.Pitcher.ip()}</td><td>${element.Pitcher.h}</td><td>${element.Pitcher.hr}</td><td>${element.Pitcher.er}</td><td>${element.Pitcher.bbPit}</td><td>${element.Pitcher.k}</td><td>${element.Pitcher.pitchNum()}(${element.Pitcher.strike}:${element.Pitcher.ball})</td></tr>`;
-        $("#away_pitcher_result").html(pitcherData);
+        $("#away_pitcher_result").append(pitcherData);
     });
 }
 
@@ -293,10 +293,14 @@ function displayBatter() {
 
 function changePitcherSubmit() {
     pited.push(pit[0]);
-    pit = [new Player($("#newPitcherSerialNum").val(), $("#newPitcher").val())];
+    pit.pop();
+    let newPit = [new Player($("#newPitcherSerialNum").val(), $("#newPitcher").val())];
+    pit.push(newPit[0]);
     $("#at_pit_info").html(`<tr><th scope="row">${pit[0].serialNum}</th><td>${pit[0].name}</td><td>${pit[0].Pitcher.ip()}</td><td>${pit[0].Pitcher.h}</td><td>${pit[0].Pitcher.hr}</td><td>${pit[0].Pitcher.er}</td><td>${pit[0].Pitcher.bbPit}</td><td>${pit[0].Pitcher.k}</td><td>${pit[0].Pitcher.pitchNum()}(${pit[0].Pitcher.strike}:${pit[0].Pitcher.ball})</td></tr>`);
     $("#newPitcherSerialNum").val("");
     $("#newPitcher").val("");
+    $("#pitcher_area").html(pit[0].serialNum);
+    $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
 }
 
 function gameEndAlert() {
