@@ -33,7 +33,7 @@ let inningCount = 1;
 //半局計數
 let halfInningCount = 1;
 //需打半局數
-// let halfInning = parseInt($("#inning").val()) * 2;
+let halfInning;
 //名單登錄
 let homePit = [];
 let awayPit = [];
@@ -49,8 +49,6 @@ let homeBatList = [];
 let awayBatList = [];
 //結束遊戲
 let gameEnd = new bootstrap.Modal(document.getElementById('gameEnd'));
-
-// $("#pitcher_status").html(pit[0].name + "：IP：" + pit[0].Pitcher.ip() + ", H：" + pit[0].Pitcher.h + ", ER：" + pit[0].Pitcher.er + ", BB：" + pit[0].Pitcher.bbPit + ", SO：" + pit[0].Pitcher.k + ", ：球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
 
 //按鍵
 $("#strike_area").click(function () {
@@ -301,6 +299,11 @@ function changePitcherSubmit() {
     $("#newPitcher").val("");
     $("#pitcher_area").html(pit[0].serialNum);
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
+    if (halfInningCount % 2 == 1) {
+        $("#home_pitcher").html("(" + homePit[0].serialNum + ")" + homePit[0].name);
+    } else {
+        $("#away_pitcher").html("(" + awayPit[0].serialNum + ")" + awayPit[0].name);
+    }
 }
 
 function gameEndAlert() {
@@ -314,49 +317,47 @@ function gameEndAlert() {
 //
 //
 //測試用參數
-$("#inning").val("3");
-$("#homePitcherSerialNum").val('8');
-$("#homePitcher").val('徐維紳');
-$('#homeBatterNum').val('3');
-$('#homeBatterSerialNum1').val('1');
-$('#homeBatterSerialNum2').val('2');
-$('#homeBatterSerialNum3').val('4');
-$('#homeBatter1').val("吳兆權");
-$('#homeBatter2').val("吳柏辰");
-$('#homeBatter3').val("周凡凱");
-$("#awayPitcherSerialNum").val('31');
-$("#awayPitcher").val('徐代偉');
-$('#awayBatterNum').val('3');
-$('#awayBatterSerialNum1').val('27');
-$('#awayBatterSerialNum2').val('31');
-$('#awayBatterSerialNum3').val('32');
-$('#awayBatter1').val("謝昀達");
-$('#awayBatter2').val("徐代偉");
-$('#awayBatter3').val("余柏毅");
-let homePitcher_side = $("#homePitcher").val();
-let homePitcherNum_side = $("#homePitcherSerialNum").val();
-$("#home_pitcher").html("(" + homePitcherNum_side + ")" + homePitcher_side);
-let awayPitcher_side = $("#awayPitcher").val();
-let awayPitcherNum_side = $("#awayPitcherSerialNum").val();
-$("#away_pitcher").html("(" + awayPitcherNum_side + ")" + awayPitcher_side);
-let homeBatterNum_side = parseInt($('#homeBatterNum').val());
-for (i = 0; i < homeBatterNum_side; i++) {
-    let homeBatterNo_side = `#homeBatter${i+1}`;
-    let homeBatter_side = $(homeBatterNo_side).val();
-    let homeBatterNumNo_side = `#homeBatterSerialNum${i+1}`;
-    let homeBatterNum_side = $(homeBatterNumNo_side).val();
-    $("#home_batter").append("(" + homeBatterNum_side + ")" + homeBatter_side + "<br>");
-}
-let awayBatterNum_side = parseInt($('#awayBatterNum').val());
-for (i = 0; i < awayBatterNum_side; i++) {
-    let awayBatterNo_side = `#awayBatter${i+1}`;
-    let awayBatter_side = $(awayBatterNo_side).val();
-    let awayBatterNumNo_side = `#awayBatterSerialNum${i+1}`;
-    let awayBatterNum_side = $(awayBatterNumNo_side).val();
-    $("#away_batter").append("(" + awayBatterNum_side + ")" + awayBatter_side + "<br>");
-}
-
-let halfInning = parseInt($("#inning").val()) * 2;
+// $("#inning").val("3");
+// $("#homePitcherSerialNum").val('8');
+// $("#homePitcher").val('徐維紳');
+// $('#homeBatterNum').val('3');
+// $('#homeBatterSerialNum1').val('1');
+// $('#homeBatterSerialNum2').val('2');
+// $('#homeBatterSerialNum3').val('4');
+// $('#homeBatter1').val("吳兆權");
+// $('#homeBatter2').val("吳柏辰");
+// $('#homeBatter3').val("周凡凱");
+// $("#awayPitcherSerialNum").val('31');
+// $("#awayPitcher").val('徐代偉');
+// $('#awayBatterNum').val('3');
+// $('#awayBatterSerialNum1').val('27');
+// $('#awayBatterSerialNum2').val('31');
+// $('#awayBatterSerialNum3').val('32');
+// $('#awayBatter1').val("謝昀達");
+// $('#awayBatter2').val("徐代偉");
+// $('#awayBatter3').val("余柏毅");
+// let homePitcher_side = $("#homePitcher").val();
+// let homePitcherNum_side = $("#homePitcherSerialNum").val();
+// $("#home_pitcher").html("(" + homePitcherNum_side + ")" + homePitcher_side);
+// let awayPitcher_side = $("#awayPitcher").val();
+// let awayPitcherNum_side = $("#awayPitcherSerialNum").val();
+// $("#away_pitcher").html("(" + awayPitcherNum_side + ")" + awayPitcher_side);
+// let homeBatterNum_side = parseInt($('#homeBatterNum').val());
+// for (i = 0; i < homeBatterNum_side; i++) {
+//     let homeBatterNo_side = `#homeBatter${i+1}`;
+//     let homeBatter_side = $(homeBatterNo_side).val();
+//     let homeBatterNumNo_side = `#homeBatterSerialNum${i+1}`;
+//     let homeBatterNum_side = $(homeBatterNumNo_side).val();
+//     $("#home_batter").append("(" + homeBatterNum_side + ")" + homeBatter_side + "<br>");
+// }
+// let awayBatterNum_side = parseInt($('#awayBatterNum').val());
+// for (i = 0; i < awayBatterNum_side; i++) {
+//     let awayBatterNo_side = `#awayBatter${i+1}`;
+//     let awayBatter_side = $(awayBatterNo_side).val();
+//     let awayBatterNumNo_side = `#awayBatterSerialNum${i+1}`;
+//     let awayBatterNum_side = $(awayBatterNumNo_side).val();
+//     $("#away_batter").append("(" + awayBatterNum_side + ")" + awayBatter_side + "<br>");
+// }
 //測試用參數
 //
 //
@@ -529,8 +530,8 @@ function game(result) {
         }
     }
 }
-
-$(document).ready(function () {
+// $(document).ready(function ()
+$("#scoreboard_form_submit").click(function () {
     //名單登錄
     homePit = [new Player($("#homePitcherSerialNum").val(), $("#homePitcher").val())];
     awayPit = [new Player($("#awayPitcherSerialNum").val(), $("#awayPitcher").val())];
@@ -545,6 +546,21 @@ $(document).ready(function () {
         awayBat.push(new Player($(`#awayBatterSerialNum${i}`).val(), $(`#awayBatter${i}`).val()));
     }
 
+
+    // 顯示計分板右側投手資訊
+    $("#home_pitcher").html("(" + homePit[0].serialNum + ")" + homePit[0].name);
+    $("#away_pitcher").html("(" + awayPit[0].serialNum + ")" + awayPit[0].name);
+    // 顯示計分板右側打者資訊
+    $("#home_batter").html("");
+    $("#away_batter").html("");
+    homeBat.forEach(function (element) {
+        $("#home_batter").append(`(${element.serialNum})${element.name}<br>`);
+    });
+    awayBat.forEach(function (element) {
+        $("#away_batter").append(`(${element.serialNum})${element.name}<br>`);
+    });
+
+
     //打線順序
     homeBatList = [...homeBat];
     awayBatList = [...awayBat];
@@ -556,5 +572,6 @@ $(document).ready(function () {
     pit = homePit;
     pited = homePitList;
     bat = awayBat;
+    halfInning = parseInt($("#inning").val()) * 2;
     game(result);
 })
