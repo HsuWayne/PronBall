@@ -61,24 +61,23 @@
     <section>
         <div>
             <div class="container py-1 py-sm-3">
-                <div class="row">
-                    <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                        <ul class="nav nav-pills mt-3" id="rulesTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="site-tab" data-bs-toggle="tab"
-                                    data-bs-target="#site" type="button" role="tab" aria-controls="site"
-                                    aria-selected="true">場地規劃</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="rule-tab" data-bs-toggle="tab" data-bs-target="#rule"
-                                    type="button" role="tab" aria-controls="rule" aria-selected="false">名詞定義</button>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="rulesTabContent">
-                            <div class="tab-pane fade show active" id="site" role="tabpanel" aria-labelledby="site-tab">
-                                <div class="imgbox text-center sticky-top">
-                                    <img src="pics/rule.jpg" class="img-fluid" alt="...">
-                                </div>
+                <ul class="nav nav-pills mt-3" id="rulesTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="site-tab" data-bs-toggle="tab" data-bs-target="#site"
+                            type="button" role="tab" aria-controls="site" aria-selected="true">場地規劃</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="rule-tab" data-bs-toggle="tab" data-bs-target="#rule" type="button"
+                            role="tab" aria-controls="rule" aria-selected="false">名詞定義</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="rulesTabContent">
+                    <div class="tab-pane fade show active" id="site" role="tabpanel" aria-labelledby="site-tab">
+                        <div class="row">
+                            <div class="imgbox text-center sticky-top col-12 col-sm-7">
+                                <img src="pics/rule.jpg" class="img-fluid" alt="...">
+                            </div>
+                            <div class="col-12 col-sm-5">
                                 <ul>
                                     <li>每隊人數<br>投手：1人(可自由更換), 打者：不限人數(固定棒次)</li>
                                     <li>投打距離<br>9.5 m</li>
@@ -91,10 +90,14 @@
                                     <li>其餘規則同棒球規定, 可視情況自行修改, 以達成同樂目的為目標</li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade" id="rule" role="tabpanel" aria-labelledby="rule-tab">
-                                <div class="imgbox text-center sticky-top">
-                                    <img src="pics/rule.jpg" class="img-fluid" alt="...">
-                                </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="rule" role="tabpanel" aria-labelledby="rule-tab">
+                        <div class="row">
+                            <div class="imgbox text-center sticky-top col-12 col-sm-7">
+                                <img src="pics/rule.jpg" class="img-fluid" alt="...">
+                            </div>
+                            <div class="col-12">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>

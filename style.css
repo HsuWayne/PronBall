@@ -118,12 +118,12 @@ tr {
 }
 
 .tab-pane th {
-    width: 15%;
+    width: 25%;
     text-align: center;
 }
 
 .tab-pane td {
-    width: 85%;
+    width: 75%;
 }
 
 .nav-pills .nav-item .nav-link.active {
