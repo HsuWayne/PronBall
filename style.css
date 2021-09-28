@@ -167,18 +167,9 @@ tr {
     background-color: #eeeeee;
     position: absolute;
     left: 50%;
-    top: 62px;
     transform: translateX(-50%);
     width: 100%;
-    height: calc(100vh - 62px);
     overflow: auto;
-}
-
-@media (min-width: 576px) {
-    .scoreboard_form {
-        top: 80px;
-        height: calc(100vh - 80px);
-    }
 }
 
 .form_title {
