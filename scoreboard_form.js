@@ -3,14 +3,14 @@ function playerListSubmit() {
 }
 
 $(document).ready(function () {
-    // playerListSubmit(); //暫時隱藏
+    // playerListSubmit(); //暫時隱藏球員登錄
     //啟用工具提示
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
 
-    //球員名單登錄
+    //打者人數改變
     $('#homeBatterNum').on('change', function () {
         $("#homeBatterAdd").html("");
         let homeBatterNum = parseInt($(this).val());
@@ -29,34 +29,4 @@ $(document).ready(function () {
             $("#awayBatterAdd").append(addBatter);
         }
     });
-
-    // //計分板運作
-    // $("#scoreboard_form_submit").click(function () {
-    //     // 顯示計分板右側投手資訊
-    //     let homePitcher_side = $("#homePitcher").val();
-    //     let homePitcherNum_side = $("#homePitcherSerialNum").val();
-    //     $("#home_pitcher").html("(" + homePitcherNum_side + ")" + homePitcher_side);
-    //     let awayPitcher_side = $("#awayPitcher").val();
-    //     let awayPitcherNum_side = $("#awayPitcherSerialNum").val();
-    //     $("#away_pitcher").html("(" + awayPitcherNum_side + ")" + awayPitcher_side);
-    //     // 顯示計分板右側打者資訊
-    //     let homeBatterNum_side = parseInt($('#homeBatterNum').val());
-    //     for (i = 0; i < homeBatterNum_side; i++) {
-    //         let homeBatterNo_side = `#homeBatter${i+1}`;
-    //         let homeBatter_side = $(homeBatterNo_side).val();
-    //         let homeBatterNumNo_side = `#homeBatterSerialNum${i+1}`;
-    //         let homeBatterNum_side = $(homeBatterNumNo_side).val();
-    //         $("#home_batter").append("(" + homeBatterNum_side + ")" + homeBatter_side + "<br>");
-    //     }
-    //     let awayBatterNum_side = parseInt($('#awayBatterNum').val());
-    //     for (i = 0; i < awayBatterNum_side; i++) {
-    //         let awayBatterNo_side = `#awayBatter${i+1}`;
-    //         let awayBatter_side = $(awayBatterNo_side).val();
-    //         let awayBatterNumNo_side = `#awayBatterSerialNum${i+1}`;
-    //         let awayBatterNum_side = $(awayBatterNumNo_side).val();
-    //         $("#away_batter").append("(" + awayBatterNum_side + ")" + awayBatter_side + "<br>");
-    //     }
-    // });
-
-
 })

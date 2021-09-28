@@ -530,7 +530,7 @@ function game(result) {
         }
     }
 }
-// $(document).ready(function ()
+// $(document).ready(function () {
 $("#scoreboard_form_submit").click(function () {
     //名單登錄
     homePit = [new Player($("#homePitcherSerialNum").val(), $("#homePitcher").val())];

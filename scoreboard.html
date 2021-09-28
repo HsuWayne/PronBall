@@ -80,6 +80,13 @@
                                     <option value="9" selected>9</option>
                                 </select>
                             </div>
+                            <!-- <div class="col-6">
+                                <label for="ruleSelect" class="form-label">使用規則</label>
+                                <select id="ruleSelect" class="form-select" aria-label="ruleSelect">
+                                    <option value="1" selected>舊規則</option>
+                                    <option value="2">新規則</option>
+                                </select>
+                            </div> -->
                         </div>
                     </div>
                     <div class="bg-info bg-opacity-25 py-3 px-3">
@@ -256,14 +263,14 @@
             <div class="container">
                 <div class="row scoreboard_nav">
                     <div id="home_score" class="col-4 bg-info bg-opacity-75 text-center">主：0</div>
-                    <div id="pitcher_status" class="col-8 bg-secondary bg-opacity-50 status">
-                        投打資訊
+                    <div id="pitcher_status" class="col-8 bg-secondary bg-opacity-50 status text-nowrap">
+                        投手資訊
                     </div>
                 </div>
                 <div class="row scoreboard_nav">
                     <div id="away_score" class="col-4 bg-danger bg-opacity-75 text-center">客：0</div>
-                    <div id="batter_status" class="col-8 bg-secondary bg-opacity-25 status">
-                        投打資訊
+                    <div id="batter_status" class="col-8 bg-secondary bg-opacity-25 status text-nowrap">
+                        打者資訊
                     </div>
                 </div>
 
@@ -320,16 +327,16 @@
                         </div>
                         <div class="row">
                             <div id="ground_area_1" class="col-6 scoreboard_ground_area scoreboard_elements">
-                                滾地出局區<br><br>犧牲觸擊失敗區</div>
+                                滾地出局區<br>犧牲觸擊失敗區</div>
                             <div id="ground_area_2" class="col-6 scoreboard_ground_area scoreboard_elements">
-                                滾地出局區<br><br>犧牲觸擊成功區</div>
+                                滾地出局區<br>犧牲觸擊成功區</div>
                         </div>
                         <div class="row">
                             <div id="fly_area_1" class="col-6 scoreboard_fly_area scoreboard_elements">
-                                直接一壘安打區<br><br>強力飛球區<br>(三壘跑者推進)
+                                直接一壘安打區<br>強力飛球區<br>(三壘跑者推進)
                             </div>
                             <div id="fly_area_2" class="col-6 scoreboard_fly_area scoreboard_elements">
-                                直接一壘安打區<br><br>強力飛球區<br>(二三壘跑者推進)
+                                直接一壘安打區<br>強力飛球區<br>(二三壘跑者推進)
                             </div>
                         </div>
                         <div class="row scoreboard_single_area">
@@ -491,12 +498,12 @@
                             </div>
                         </div>
                         <div class="row bg-info bg-opacity-50">
-                            <div id="home_pitcher" class="col-12 scoreboard_teamsInfo_pitcher"></div>
-                            <div id="home_batter" class="col-12 scoreboard_teamsInfo_batter"></div>
+                            <div id="home_pitcher" class="col-12 scoreboard_teamsInfo_pitcher text-nowrap"></div>
+                            <div id="home_batter" class="col-12 scoreboard_teamsInfo_batter text-nowrap"></div>
                         </div>
                         <div class="row bg-danger bg-opacity-50">
-                            <div id="away_pitcher" class="col-12 scoreboard_teamsInfo_pitcher"></div>
-                            <div id="away_batter" class="col-12 scoreboard_teamsInfo_batter"></div>
+                            <div id="away_pitcher" class="col-12 scoreboard_teamsInfo_pitcher text-nowrap"></div>
+                            <div id="away_batter" class="col-12 scoreboard_teamsInfo_batter text-nowrap"></div>
                         </div>
                         <div class="row scoreboard_btn_group">
                             <div class="col-6 m-auto d-flex justify-content-center">

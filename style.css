@@ -204,10 +204,14 @@ tr {
 
 @media (min-width: 576px) {
     .form_title {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 
     .form_subtitle {
+        font-size: 1.1rem;
+    }
+
+    .scoreboard_form form {
         font-size: 1rem;
     }
 }
@@ -239,6 +243,7 @@ tr {
 
 .scoreboard_nav .status {
     font-size: 0.7rem;
+    overflow: auto;
 }
 
 @media (min-width: 576px) {
@@ -352,40 +357,34 @@ tr {
 }
 
 .scoreboard_ground_area {
-    height: 18vh;
+    height: 12vh;
     background-color: #20c997;
 }
 
 .scoreboard_fly_area {
-    height: 15vh;
+    height: 12vh;
     background-color: #0dcaf0;
 }
 
 .scoreboard_single_area {
-    height: 10vh;
+    height: 9vh;
     background-color: #ffc107;
 }
 
 .scoreboard_double_area {
-    height: 10vh;
+    height: 9vh;
     background-color: #fd7e14;
 }
 
 .scoreboard_triple_area {
-    height: 10vh;
+    height: 9vh;
     background-color: #6f42c1;
 }
 
 
 .scoreboard_homerun_area {
-    height: calc(17vh - 62px);
+    height: 9vh;
     background-color: #d63384;
-}
-
-@media (min-width: 576px) {
-    .scoreboard_homerun_area {
-        height: calc(17vh - 80px);
-    }
 }
 
 .pitcher,
@@ -402,7 +401,7 @@ tr {
 
 .pitcher {
     left: 37.5vw;
-    top: calc(48vh + 62px);
+    top: calc(42vh + 62px);
 }
 
 .batter {
@@ -422,7 +421,7 @@ tr {
     }
 
     .pitcher {
-        top: calc(48vh + 80px);
+        top: calc(42vh + 80px);
         left: calc(50vw - 68px);
     }
 
@@ -537,17 +536,18 @@ tr {
 }
 
 .scoreboard_teamsInfo_pitcher {
-    height: 5vh;
+    height: 4vh;
     border: 1px solid #000000;
-    line-height: 5vh;
+    line-height: 4vh;
     font-size: 0.8rem;
 }
 
 .scoreboard_teamsInfo_batter {
-    height: 15vh;
+    height: 12vh;
+    line-height: 3vh;
     border: 1px solid #000000;
-    overflow: auto;
     font-size: 0.8rem;
+    overflow: auto;
 }
 
 @media (min-width: 576px) {
@@ -559,7 +559,7 @@ tr {
 }
 
 .scoreboard_btn_group {
-    height: calc(30vh - 62px);
+    height: 19vh;
 }
 
 .scoreboard_btn_group .btn {
@@ -570,10 +570,6 @@ tr {
 }
 
 @media (min-width: 576px) {
-    .scoreboard_btn_group {
-        height: calc(30vh - 80px);
-    }
-
     .scoreboard_btn_group .btn {
         line-height: 1;
         padding: 0.25rem 0.5rem;
