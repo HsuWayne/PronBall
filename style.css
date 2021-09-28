@@ -219,14 +219,7 @@ tr {
 /* scoreboard */
 .scoreboard {
     width: 100%;
-    height: calc(100vh - 62px);
     user-select: none;
-}
-
-@media (min-width: 576px) {
-    .scoreboard {
-        height: calc(100vh - 80px);
-    }
 }
 
 .scoreboard_nav {
