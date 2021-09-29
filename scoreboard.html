@@ -253,7 +253,7 @@
                     </div>
                     <div class="row my-3">
                         <div class="col-3 offset-9">
-                            <button id="scoreboard_form_submit" class="btn btn-primary" type="submit">送出</button>
+                            <button id="scoreboard_form_submit" class="btn btn-primary mb-3" type="submit">送出</button>
                         </div>
                     </div>
                 </form>
@@ -318,25 +318,73 @@
                 <div class="row">
                     <div class="col-9">
                         <div class="row scoreboard_bat_area">
-                            <div id="ball_area_1" class="col-5 scoreboard_bat_area_ball scoreboard_elements">壞球</div>
-                            <div id="strike_area" class="col-2 scoreboard_bat_area_strike scoreboard_elements">好球</div>
-                            <div id="ball_area_2" class="col-5 scoreboard_bat_area_ball scoreboard_elements">壞球</div>
+                            <div class="col-5 scoreboard_bat_area_ball scoreboard_elements ball_area">
+                                壞球</div>
+                            <div class="col-2 scoreboard_bat_area_strike scoreboard_elements strike_area">好球</div>
+                            <div class="col-5 scoreboard_bat_area_ball scoreboard_elements ball_area">
+                                壞球</div>
                         </div>
-                        <div class="row scoreboard_foul_area">
-                            <div id="foul_area" class="col-12 scoreboard_elements">界外</div>
+                        <div class="row scoreboard_foul_area foul_area">
+                            <div class="col-12 scoreboard_elements">界外</div>
                         </div>
                         <div class="row">
                             <div id="ground_area_1" class="col-6 scoreboard_ground_area scoreboard_elements">
-                                滾地出局區<br>犧牲觸擊失敗區</div>
+                                滾地出局區</div>
                             <div id="ground_area_2" class="col-6 scoreboard_ground_area scoreboard_elements">
-                                滾地出局區<br>犧牲觸擊成功區</div>
+                                滾地出局區</div>
                         </div>
                         <div class="row">
-                            <div id="fly_area_1" class="col-6 scoreboard_fly_area scoreboard_elements">
-                                直接一壘安打區<br>強力飛球區<br>(三壘跑者推進)
+                            <div id="fly_area_1" class="col-6 scoreboard_fly_area scoreboard_elements"
+                                data-bs-toggle="modal" data-bs-target="#flyArea1Modal">
+                                直接一壘安打區<br>強力飛球區
                             </div>
-                            <div id="fly_area_2" class="col-6 scoreboard_fly_area scoreboard_elements">
-                                直接一壘安打區<br>強力飛球區<br>(二三壘跑者推進)
+                            <div class="modal fade" id="flyArea1Modal" data-bs-backdrop="static" tabindex="-1"
+                                aria-labelledby="flyArea1ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="flyArea1ModalLabel">請選擇擊球結果</h5>
+                                            <button id="fly_area_close_1" type="button" class="btn-close"
+                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body d-flex justify-content-evenly">
+                                            <button type="button" id="flyArea_single_btn_1"
+                                                class="btn btn-outline-warning" style="color: #000000;">一壘安打</button>
+                                            <button type="button" id="flyArea_fly_out_btn_1"
+                                                class="btn btn-outline-info" style="color: #000000;">飛球出局</button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                style="color: #ffffff;">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="fly_area_2" class="col-6 scoreboard_fly_area scoreboard_elements"
+                                data-bs-toggle="modal" data-bs-target="#flyArea2Modal">
+                                直接一壘安打區<br>強力飛球區
+                            </div>
+                            <div class="modal fade" id="flyArea2Modal" data-bs-backdrop="static" tabindex="-1"
+                                aria-labelledby="flyArea2ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="flyArea2ModalLabel">請選擇擊球結果</h5>
+                                            <button id="fly_area_close_2" type="button" class="btn-close"
+                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body d-flex justify-content-evenly">
+                                            <button type="button" id="flyArea_single_btn_2"
+                                                class="btn btn-outline-warning" style="color: #000000;">一壘安打</button>
+                                            <button type="button" id="flyArea_fly_out_btn_2"
+                                                class="btn btn-outline-info" style="color: #000000;">飛球出局</button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                style="color: #ffffff;">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row scoreboard_single_area">
@@ -353,14 +401,14 @@
                             <div id="pitcher_area"
                                 class="pitcher scoreboard_elements d-flex align-items-center justify-content-center"
                                 data-bs-toggle="modal" data-bs-target="#pitcherInfo"></div>
-                            <div class="modal fade" id="pitcherInfo" tabindex="-1" aria-labelledby="pitcherInfoLabel"
-                                aria-hidden="true">
+                            <div class="modal fade" id="pitcherInfo" tabindex="-1" data-bs-backdrop="static"
+                                aria-labelledby="pitcherInfoLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="pitcherInfoLabel">投手資訊</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                            <button id="pitcherInfoClose" type="button" class="btn-close"
+                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <table class="table table-striped caption-top table-bordered">
@@ -391,6 +439,8 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <button type="button" id="doublePlay_btn"
+                                                class="btn btn-outline-primary disabled">雙殺打</button>
                                         </div>
                                         <div class="container-fluid">
                                             <form class="row was-validated"
@@ -430,14 +480,14 @@
                             <div id="batter_area"
                                 class="batter scoreboard_elements d-flex align-items-center justify-content-center"
                                 data-bs-toggle="modal" data-bs-target="#batterInfo"></div>
-                            <div class="modal fade" id="batterInfo" tabindex="-1" aria-labelledby="batterInfoLabel"
-                                aria-hidden="true">
+                            <div class="modal fade" id="batterInfo" tabindex="-1" data-bs-backdrop="static"
+                                aria-labelledby="batterInfoLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="batterInfoLabel">打者資訊</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                            <button id="batterInfoClose" type="button" class="btn-close"
+                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <table class="table table-striped caption-top table-bordered">
@@ -468,6 +518,8 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <button type="button" id="sacrificeFly_btn"
+                                                class="btn btn-outline-primary disabled">高飛犧牲打</button>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary"
@@ -507,35 +559,62 @@
                         </div>
                         <div class="row scoreboard_btn_group">
                             <div class="col-6 m-auto d-flex justify-content-center">
-                                <button type="button" id="strike_btn" class="btn btn-danger" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" title="好球">S</button>
+                                <button type="button" id="strike_btn" class="btn btn-danger strike_area"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="好球">S</button>
                             </div>
                             <div class="col-6 m-auto d-flex justify-content-center">
-                                <button type="button" id="ball_btn" class="btn btn-success" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" title="壞球">B</button>
+                                <button type="button" id="ball_btn" class="btn btn-success ball_area"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="壞球">B</button>
                             </div>
                             <div class="col-6 m-auto d-flex justify-content-center">
-                                <button type="button" id="foul_btn" class="btn btn-secondary" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" title="界外">F</button>
+                                <button type="button" id="foul_btn" class="btn btn-secondary foul_area"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="界外">F</button>
                             </div>
                             <div class="col-6 m-auto d-flex justify-content-center">
-                                <button type="button" id="hit_btn" class="btn btn-warning" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" title="安打">H</button>
+                                <button type="button" id="hit_btn" class="btn btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#hitBtn">H</button>
+                                <div class="modal fade" id="hitBtn" tabindex="-1" data-bs-backdrop="static"
+                                    aria-labelledby="hitBtnLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="hitBtnLabel">請選擇安打結果</h5>
+                                                <button id="hitBtnClose" type="button" class="btn-close"
+                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body d-flex justify-content-evenly">
+                                                <button type="button" id="single_btn"
+                                                    class="btn btn-outline-warning">一壘</button>
+                                                <button type="button" id="double_btn"
+                                                    class="btn btn-outline-warning">二壘</button>
+                                                <button type="button" id="triple_btn"
+                                                    class="btn btn-outline-warning">三壘</button>
+                                                <button type="button" id="homerun_btn"
+                                                    class="btn btn-outline-warning">全壘打</button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                    style="color: #ffffff;">取消</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-6 m-auto d-flex justify-content-center">
-                                <button type="button" id="sacrifice_hits" class="btn btn-primary"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="犧牲觸擊">SH</button>
+                                <button type="button" id="ground_out_btn" class="btn btn-primary"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="滾地出局">GO</button>
                             </div>
                             <div class="col-6 m-auto d-flex justify-content-center">
-                                <button type="button" id="out_btn" class="btn btn-info" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" title="出局">O</button>
+                                <button type="button" id="fly_out_btn" class="btn btn-info" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="飛球出局">AO</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="gameEnd" tabindex="-1" aria-labelledby="gameEndLabel" aria-hidden="true">
+        <div class="modal fade" id="gameEnd" tabindex="-1" ariadata-bs-backdrop="static" -labelledby="gameEndLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content gameEnd">
                     <div class="modal-header">
