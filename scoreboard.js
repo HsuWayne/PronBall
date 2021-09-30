@@ -200,12 +200,14 @@ $("#ground_out_btn").click(function () {
 });
 //飛球
 $("#fly_out_btn").click(function () {
+    if (doublePlay == 1) {
+        return $("#single_area").click();
+    }
     pit[0].Pitcher.o++;
     pit[0].Pitcher.strike++;
     pit[0].Pitcher.aoPit++;
     atBat[0].Batter.ao++;
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
-    doublePlay = 0;
     result = "ao";
     game(result);
 });
