@@ -350,8 +350,11 @@
                                         <div class="modal-body d-flex justify-content-evenly">
                                             <button type="button" id="flyArea_single_btn_1"
                                                 class="btn btn-outline-warning" style="color: #000000;">一壘安打</button>
-                                            <button type="button" id="flyArea_fly_out_btn_1"
-                                                class="btn btn-outline-info" style="color: #000000;">飛球出局</button>
+                                            <button type="button" class="btn btn-outline-info flyArea_fly_out_btn"
+                                                style="color: #000000;">飛球出局</button>
+                                            <button type="button"
+                                                class="btn btn-outline-success flyArea_power_fly_out_btn_1"
+                                                style="color: #000000;">強力飛球出局</button>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
@@ -376,8 +379,11 @@
                                         <div class="modal-body d-flex justify-content-evenly">
                                             <button type="button" id="flyArea_single_btn_2"
                                                 class="btn btn-outline-warning" style="color: #000000;">一壘安打</button>
-                                            <button type="button" id="flyArea_fly_out_btn_2"
-                                                class="btn btn-outline-info" style="color: #000000;">飛球出局</button>
+                                            <button type="button" class="btn btn-outline-info flyArea_fly_out_btn"
+                                                style="color: #000000;">飛球出局</button>
+                                            <button type="button"
+                                                class="btn btn-outline-success flyArea_power_fly_out_btn_2"
+                                                style="color: #000000;">強力飛球出局</button>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
@@ -607,6 +613,32 @@
                             <div class="col-6 m-auto d-flex justify-content-center">
                                 <button type="button" id="fly_out_btn" class="btn btn-info" data-bs-toggle="tooltip"
                                     data-bs-placement="top" title="飛球出局">AO</button>
+                                <div class="modal fade" id="newFlyOutBtn" tabindex="-1" data-bs-backdrop="static"
+                                    ariadata-bs-backdrop="static" -labelledby="newFlyOutBtnLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content newFlyOutBtn">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="newFlyOutBtnLabel">請選擇飛球種類</h5>
+                                                <button type="button" id="newFlyOutBtnClose" class="btn-close"
+                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body d-flex justify-content-evenly">
+                                                <button type="button" class="btn btn-outline-info flyArea_fly_out_btn"
+                                                    style="color: #000000;">飛球出局</button>
+                                                <button type="button"
+                                                    class="btn btn-outline-success flyArea_power_fly_out_btn_1"
+                                                    style="color: #000000;">強力飛球出局<br>(三壘跑者推進)</button>
+                                                <button type="button"
+                                                    class="btn btn-outline-success flyArea_power_fly_out_btn_2"
+                                                    style="color: #000000;">強力飛球出局<br>(二三壘跑者推進)</button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                    style="color: #ffffff;">取消</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
