@@ -611,4 +611,5 @@ tr {
 .scoreboard_result td {
     width: auto;
     text-align: center;
+    font-size: 0.8rem;
 }

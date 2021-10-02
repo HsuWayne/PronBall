@@ -22,8 +22,10 @@ let bat = [];
 let atBat = [];
 //主隊分數
 let homePoint = 0;
+let homePointList = [];
 //客隊分數
 let awayPoint = 0;
+let awayPointList = [];
 //for迴圈變數
 let i;
 //最後半局On
@@ -111,7 +113,13 @@ $("#single_area").click(function () {
     pit[0].Pitcher.strike++;
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     doublePlay = 0;
+    $("#doublePlay_btn").removeClass("btn-primary");
+    $("#doublePlay_btn").addClass("btn-outline-primary");
+    $("#doublePlay_btn").html("雙殺打");
     sacrificeFly = 0;
+    $("#sacrificeFly_btn").removeClass("btn-primary");
+    $("#sacrificeFly_btn").addClass("btn-outline-primary");
+    $("#sacrificeFly_btn").html("高飛犧牲打");
     result = "1";
     game(result);
 });
@@ -133,6 +141,9 @@ $("#double_area").click(function () {
     pit[0].Pitcher.strike++;
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     doublePlay = 0;
+    $("#doublePlay_btn").removeClass("btn-primary");
+    $("#doublePlay_btn").addClass("btn-outline-primary");
+    $("#doublePlay_btn").html("雙殺打");
     result = "2";
     game(result);
 });
@@ -146,6 +157,9 @@ $("#triple_area").click(function () {
     pit[0].Pitcher.strike++;
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     doublePlay = 0;
+    $("#doublePlay_btn").removeClass("btn-primary");
+    $("#doublePlay_btn").addClass("btn-outline-primary");
+    $("#doublePlay_btn").html("雙殺打");
     result = "3";
     game(result);
 });
@@ -160,7 +174,13 @@ $("#homerun_area").click(function () {
     pit[0].Pitcher.strike++;
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     doublePlay = 0;
+    $("#doublePlay_btn").removeClass("btn-primary");
+    $("#doublePlay_btn").addClass("btn-outline-primary");
+    $("#doublePlay_btn").html("雙殺打");
     sacrificeFly = 0;
+    $("#sacrificeFly_btn").removeClass("btn-primary");
+    $("#sacrificeFly_btn").addClass("btn-outline-primary");
+    $("#sacrificeFly_btn").html("高飛犧牲打");
     result = "4";
     game(result);
 });
@@ -176,6 +196,9 @@ $("#ground_area_1").click(function () {
     atBat[0].Batter.go++;
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     sacrificeFly = 0;
+    $("#sacrificeFly_btn").removeClass("btn-primary");
+    $("#sacrificeFly_btn").addClass("btn-outline-primary");
+    $("#sacrificeFly_btn").html("高飛犧牲打");
     result = "go";
     game(result);
 });
@@ -186,6 +209,9 @@ $("#ground_area_2").click(function () {
     atBat[0].Batter.go++;
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     sacrificeFly = 0;
+    $("#sacrificeFly_btn").removeClass("btn-primary");
+    $("#sacrificeFly_btn").addClass("btn-outline-primary");
+    $("#sacrificeFly_btn").html("高飛犧牲打");
     result = "go";
     game(result);
 });
@@ -240,9 +266,11 @@ $(".flyArea_power_fly_out_btn_1").click(function () {
         runner.shift();
         if (halfInningCount % 2 == 1) {
             awayPoint++;
+            awayPointList[inningCount - 1]++;
             $("#away_score").html("客：" + awayPoint);
         } else {
             homePoint++;
+            homePointList[inningCount - 1]++;
             $("#home_score").html("主：" + homePoint);
         }
         if (lastHalfCheck == 1) {
@@ -284,9 +312,11 @@ $(".flyArea_power_fly_out_btn_2").click(function () {
             runner.shift();
             if (halfInningCount % 2 == 1) {
                 awayPoint++;
+                awayPointList[inningCount - 1]++;
                 $("#away_score").html("客：" + awayPoint);
             } else {
                 homePoint++;
+                homePointList[inningCount - 1]++;
                 $("#home_score").html("主：" + homePoint);
             }
             if (lastHalfCheck == 1) {
@@ -334,8 +364,14 @@ $("#pitcher_area").click(function () {
 $("#doublePlay_btn").click(function () {
     if (doublePlay == 0) {
         doublePlay = 1;
+        $("#doublePlay_btn").removeClass("btn-outline-primary");
+        $("#doublePlay_btn").addClass("btn-primary");
+        $("#doublePlay_btn").html("雙殺打 已開啟");
     } else {
         doublePlay = 0;
+        $("#doublePlay_btn").removeClass("btn-primary");
+        $("#doublePlay_btn").addClass("btn-outline-primary");
+        $("#doublePlay_btn").html("雙殺打");
     }
     $("#pitcherInfoClose").click();
 });
@@ -343,8 +379,14 @@ $("#doublePlay_btn").click(function () {
 $("#sacrificeFly_btn").click(function () {
     if (sacrificeFly == 0) {
         sacrificeFly = 1;
+        $("#sacrificeFly_btn").removeClass("btn-outline-primary");
+        $("#sacrificeFly_btn").addClass("btn-primary");
+        $("#sacrificeFly_btn").html("高飛犧牲打 已開啟");
     } else {
         sacrificeFly = 0;
+        $("#sacrificeFly_btn").removeClass("btn-primary");
+        $("#sacrificeFly_btn").addClass("btn-outline-primary");
+        $("#sacrificeFly_btn").html("高飛犧牲打");
     }
     $("#batterInfoClose").click();
 });
@@ -422,6 +464,35 @@ function clearBallCount() {
     $("#ball_three").removeClass("scoreboard_ballBallOn");
 }
 
+function displayResult() {
+    $("#scoreboard_result_inning").html("");
+    $("#scoreboard_result_inning").append('<th scope="col">#</th>');
+    for (i = 1; i <= inningCount; i++) {
+        $("#scoreboard_result_inning").append(`<th scope="col">${i}</th>`);
+    }
+    $("#scoreboard_result_inning").append('<th class="table-active" scope="col">R</th><th class="table-active" scope="col">H</th>');
+    $("#scoreboard_result_away").html("");
+    $("#scoreboard_result_away").append('<th scope="row">AWAY</th>');
+    awayPointList.forEach(function (element) {
+        $("#scoreboard_result_away").append(`<td>${element}</td>`);
+    });
+    let batterHitsTotal = 0;
+    awayBatList.forEach(function (element) {
+        batterHitsTotal += element.Batter.h();
+    });
+    $("#scoreboard_result_away").append(`<td>${awayPoint}</td><td>${batterHitsTotal}</td>`);
+    $("#scoreboard_result_home").html("");
+    $("#scoreboard_result_home").append('<th scope="row">HOME</th>');
+    batterHitsTotal = 0;
+    homePointList.forEach(function (element) {
+        $("#scoreboard_result_home").append(`<td>${element}</td>`);
+    });
+    homeBatList.forEach(function (element) {
+        batterHitsTotal += element.Batter.h();
+    });
+    $("#scoreboard_result_home").append(`<td>${homePoint}</td><td>${batterHitsTotal}</td>`);
+}
+
 function displayPitcher() {
     $("#home_pitcher_result").html("");
     $("#away_pitcher_result").html("");
@@ -470,6 +541,7 @@ function changePitcherSubmit() {
 }
 
 function gameEndAlert() {
+    displayResult();
     displayPitcher();
     displayBatter();
     $("#gameEndLabel").html("比賽結束！最終比數 主 " + homePoint + "：客 " + awayPoint);
@@ -547,11 +619,15 @@ function game(result) {
                 result = "";
                 if (doublePlay == 1) {
                     pit[0].Pitcher.dpPit++;
+                    pit[0].Pitcher.o++;
                     atBat[0].Batter.dp++;
                     out++;
                     runnerBase.shift();
                     runner.shift();
                     doublePlay = 0;
+                    $("#doublePlay_btn").removeClass("btn-primary");
+                    $("#doublePlay_btn").addClass("btn-outline-primary");
+                    $("#doublePlay_btn").html("雙殺打");
                     for (i = 1; i <= 3; i++) {
                         $(`#base_${i}`).html("");
                     }
@@ -573,11 +649,16 @@ function game(result) {
                     runnerBase.shift();
                     runner.shift();
                     sacrificeFly = 0;
+                    $("#sacrificeFly_btn").removeClass("btn-primary");
+                    $("#sacrificeFly_btn").addClass("btn-outline-primary");
+                    $("#sacrificeFly_btn").html("高飛犧牲打");
                     if (halfInningCount % 2 == 1) {
                         awayPoint++;
+                        awayPointList[inningCount - 1]++;
                         $("#away_score").html("客：" + awayPoint);
                     } else {
                         homePoint++;
+                        homePointList[inningCount - 1]++;
                         $("#home_score").html("主：" + homePoint);
                     }
                     if (lastHalfCheck == 1) {
@@ -626,9 +707,11 @@ function game(result) {
                     runner.shift();
                     if (halfInningCount % 2 == 1) {
                         awayPoint++;
+                        awayPointList[inningCount - 1]++;
                         $("#away_score").html("客：" + awayPoint);
                     } else {
                         homePoint++;
+                        homePointList[inningCount - 1]++;
                         $("#home_score").html("主：" + homePoint);
                     }
                     if (lastHalfCheck == 1) {
@@ -649,6 +732,9 @@ function game(result) {
                 if (sacrificeFly == 1) {
                     base--;
                     sacrificeFly = 0;
+                    $("#sacrificeFly_btn").removeClass("btn-primary");
+                    $("#sacrificeFly_btn").addClass("btn-outline-primary");
+                    $("#sacrificeFly_btn").html("高飛犧牲打");
                 }
                 runnerBase.push(0);
                 runnerBase.forEach(function (element, index, array) {
@@ -656,8 +742,8 @@ function game(result) {
                 });
                 runnerBase.forEach(function (element, index) {
                     if (element >= 4) {
-                        runner[0][1].Pitcher.er++;
-                        if (runner[0][1].name != pit[0].name) {
+                        runner[index][1].Pitcher.er++;
+                        if (runner[index][1].name != pit[0].name) {
                             pit[0].Pitcher.ira++;
                         }
                         runner[index][0].Batter.runs++;
@@ -665,9 +751,11 @@ function game(result) {
                         runnerToHome++;
                         if (halfInningCount % 2 == 1) {
                             awayPoint++;
+                            awayPointList[inningCount - 1]++;
                             $("#away_score").html("客：" + awayPoint);
                         } else {
                             homePoint++;
+                            homePointList[inningCount - 1]++;
                             $("#home_score").html("主：" + homePoint);
                         }
                     }
@@ -716,10 +804,13 @@ function game(result) {
             }
             if (halfInning - halfInningCount == 1) {
                 lastHalfCheck = 0;
+                homePointList.push("0");
+                awayPointList.push("0");
             }
         }
         if (halfInningCount == halfInning) {
             if (homePoint > awayPoint) {
+                homePointList[homePointList.length - 1] = "-";
                 gameEndAlert();
             } else {
                 lastHalfCheck = 1;
@@ -735,7 +826,6 @@ function game(result) {
             pit = homePit;
             pited = homePitList;
             bat = awayBat;
-            point = awayPoint;
             game(result);
         } //下半局
         else {
@@ -744,7 +834,6 @@ function game(result) {
             pit = awayPit;
             pited = awayPitList;
             bat = homeBat;
-            point = homePoint;
             game(result);
         }
     }
@@ -819,5 +908,9 @@ $("#scoreboard_form_submit").click(function () {
     pited = homePitList;
     bat = awayBat;
     halfInning = parseInt($("#inning").val()) * 2;
+    for (i = 1; i <= parseInt($("#inning").val()); i++) {
+        homePointList.push("0");
+        awayPointList.push("0");
+    }
     game(result);
 })
