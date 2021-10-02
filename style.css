@@ -170,6 +170,7 @@ tr {
     transform: translateX(-50%);
     width: 100%;
     overflow: auto;
+    user-select: none;
 }
 
 .form_title {
@@ -573,6 +574,7 @@ tr {
 /* scoreboard result */
 .gameEnd {
     background-color: #eeeeee;
+    user-select: none;
 }
 
 .scoreboard_result {
