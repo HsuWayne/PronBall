@@ -330,7 +330,29 @@
                         <div class="row">
                             <div id="ground_area_1" class="col-6 scoreboard_ground_area scoreboard_elements">
                                 滾地出局區</div>
-                            <div id="ground_area_2" class="col-6 scoreboard_ground_area scoreboard_elements">
+                            <div class="modal fade" id="newGroundOutBtn" tabindex="-1" data-bs-backdrop="static"
+                                ariadata-bs-backdrop="static" -labelledby="newGroundOutBtnLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content newGroundOutBtn">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="newGroundOutBtnLabel">請選擇滾地球種類</h5>
+                                            <button type="button" id="newGroundOutBtnClose" class="btn-close"
+                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body d-flex justify-content-evenly">
+                                            <button type="button" class="btn btn-outline-info ground_out"
+                                                style="color: #000000;">滾地球出局</button>
+                                            <button id="sacrificeHit_btn" type="button" class="btn btn-outline-success"
+                                                style="color: #000000;">犧牲觸擊</button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                style="color: #ffffff;">取消</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="ground_area_2" class="col-6 scoreboard_ground_area scoreboard_elements ground_out">
                                 滾地出局區</div>
                         </div>
                         <div class="row">
@@ -627,10 +649,10 @@
                                                     style="color: #000000;">飛球出局</button>
                                                 <button type="button"
                                                     class="btn btn-outline-success flyArea_power_fly_out_btn_1"
-                                                    style="color: #000000;">強力飛球出局<br>(三壘跑者推進)</button>
+                                                    style="color: #000000;">強力飛球出局<br>(二三壘跑者推進)</button>
                                                 <button type="button"
                                                     class="btn btn-outline-success flyArea_power_fly_out_btn_2"
-                                                    style="color: #000000;">強力飛球出局<br>(二三壘跑者推進)</button>
+                                                    style="color: #000000;">強力飛球出局<br>(三壘跑者推進)</button>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
