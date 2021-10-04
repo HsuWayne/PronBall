@@ -115,7 +115,11 @@ $("#single_area").click(function () {
     doublePlay = 0;
     $("#doublePlay_btn").removeClass("btn-primary");
     $("#doublePlay_btn").addClass("btn-outline-primary");
-    $("#doublePlay_btn").html("雙殺打");
+    if ($("#ruleSelect").val() == 2) {
+        $("#doublePlay_btn").html("趨前守備");
+    } else {
+        $("#doublePlay_btn").html("雙殺打");
+    }
     sacrificeFly = 0;
     $("#sacrificeFly_btn").removeClass("btn-primary");
     $("#sacrificeFly_btn").addClass("btn-outline-primary");
@@ -143,7 +147,11 @@ $("#double_area").click(function () {
     doublePlay = 0;
     $("#doublePlay_btn").removeClass("btn-primary");
     $("#doublePlay_btn").addClass("btn-outline-primary");
-    $("#doublePlay_btn").html("雙殺打");
+    if ($("#ruleSelect").val() == 2) {
+        $("#doublePlay_btn").html("趨前守備");
+    } else {
+        $("#doublePlay_btn").html("雙殺打");
+    }
     result = "2";
     game(result);
 });
@@ -159,7 +167,11 @@ $("#triple_area").click(function () {
     doublePlay = 0;
     $("#doublePlay_btn").removeClass("btn-primary");
     $("#doublePlay_btn").addClass("btn-outline-primary");
-    $("#doublePlay_btn").html("雙殺打");
+    if ($("#ruleSelect").val() == 2) {
+        $("#doublePlay_btn").html("趨前守備");
+    } else {
+        $("#doublePlay_btn").html("雙殺打");
+    }
     result = "3";
     game(result);
 });
@@ -176,7 +188,11 @@ $("#homerun_area").click(function () {
     doublePlay = 0;
     $("#doublePlay_btn").removeClass("btn-primary");
     $("#doublePlay_btn").addClass("btn-outline-primary");
-    $("#doublePlay_btn").html("雙殺打");
+    if ($("#ruleSelect").val() == 2) {
+        $("#doublePlay_btn").html("趨前守備");
+    } else {
+        $("#doublePlay_btn").html("雙殺打");
+    }
     sacrificeFly = 0;
     $("#sacrificeFly_btn").removeClass("btn-primary");
     $("#sacrificeFly_btn").addClass("btn-outline-primary");
@@ -202,18 +218,60 @@ function groundOut() {
     result = "go";
     game(result);
 }
-$(".ground_out").click(function () {
-    $("#newGroundOutBtnClose").click();
+$("#ground_area_2").click(function () {
     groundOut();
 });
-let newGroundOutBtn = new bootstrap.Modal(document.getElementById('newGroundOutBtn'));
+let newGroundOut = new bootstrap.Modal(document.getElementById('newGroundOut'));
 $("#ground_area_1").click(function () {
     if ($("#ruleSelect").val() == 2 && runner.length > 0 && out <= 1) {
-        newGroundOutBtn.show();
+        newGroundOut.show();
     } else {
         groundOut();
     }
 });
+$(".newGroundOutLeft").click(function () {
+    $("#newGroundOutClose").click();
+    $("#newGroundOutBtnClose").click();
+    if (out <= 1 && doublePlay == 0) {
+        if (runnerBase[0] == 3) {
+            if (runnerBase[1] == 2) {
+                runnerBase[1]++;
+            }
+            runner[0][1].Pitcher.er++;
+            if (runner[0][1].name != pit[0].name) {
+                pit[0].Pitcher.ira++;
+            }
+            runner[0][0].Batter.runs++;
+            atBat[0].Batter.rbi++;
+            runnerBase.shift();
+            runner.shift();
+            if (halfInningCount % 2 == 1) {
+                awayPoint++;
+                awayPointList[inningCount - 1]++;
+                $("#away_score").html("客：" + awayPoint);
+            } else {
+                homePoint++;
+                homePointList[inningCount - 1]++;
+                $("#home_score").html("主：" + homePoint);
+            }
+            if (lastHalfCheck == 1) {
+                if (homePoint > awayPoint) {
+                    gameEndAlert();
+                }
+            }
+        } else if (runnerBase[0] == 2) {
+            runnerBase[0]++;
+        }
+        for (i = 1; i <= 3; i++) {
+            $(`#base_${i}`).html("");
+        }
+        runnerBase.forEach(function (element, index) {
+            $(`#base_${element}`).html(runner[index][0].serialNum);
+        });
+    }
+    groundOut();
+});
+let newGroundOutBtn = new bootstrap.Modal(document.getElementById('newGroundOutBtn'));
 $("#ground_out_btn").click(function () {
     if ($("#ruleSelect").val() == 2 && runner.length > 0 && out <= 1) {
         newGroundOutBtn.show();
@@ -221,7 +279,12 @@ $("#ground_out_btn").click(function () {
         groundOut();
     }
 });
-$("#sacrificeHit_btn").click(function () {
+$("#newGroundOutRight").click(function () {
+    $("#newGroundOutBtnClose").click();
+    $("#ground_area_2").click();
+});
+$(".sacrificeHit_btn").click(function () {
+    $("#newGroundOutClose").click();
     $("#newGroundOutBtnClose").click();
     runnerBase.forEach(function (element, index, array) {
         array[index]++;
@@ -380,24 +443,46 @@ $("#batter_area").click(function () {
 //投手
 $("#pitcher_area").click(function () {
     $("#at_pit_info").html(`<tr><th scope="row">${pit[0].serialNum}</th><td>${pit[0].name}</td><td>${pit[0].Pitcher.ip()}</td><td>${pit[0].Pitcher.h}</td><td>${pit[0].Pitcher.hr}</td><td>${pit[0].Pitcher.er}</td><td>${pit[0].Pitcher.bbPit}</td><td>${pit[0].Pitcher.k}</td><td>${pit[0].Pitcher.pitchNum()}(${pit[0].Pitcher.strike}:${pit[0].Pitcher.ball})</td></tr>`);
-    if (runner.length > 0 && out <= 1) {
-        $("#doublePlay_btn").removeClass("disabled");
-    } else {
-        $("#doublePlay_btn").addClass("disabled");
+    if (out <= 1) {
+        if ($("#ruleSelect").val() == 2) {
+            if (runnerBase[runnerBase.length - 1] == 1 && runnerBase[runnerBase.length - 2] == 2) {
+                $("#doublePlay_btn").removeClass("disabled");
+            } else {
+                $("#doublePlay_btn").addClass("disabled");
+            }
+        } else if (runner.length > 0) {
+            $("#doublePlay_btn").removeClass("disabled");
+        } else {
+            $("#doublePlay_btn").addClass("disabled");
+        }
     }
 });
 //開啟雙殺打
 $("#doublePlay_btn").click(function () {
-    if (doublePlay == 0) {
-        doublePlay = 1;
-        $("#doublePlay_btn").removeClass("btn-outline-primary");
-        $("#doublePlay_btn").addClass("btn-primary");
-        $("#doublePlay_btn").html("雙殺打 已開啟");
+    if ($("#ruleSelect").val() == 2) {
+        if (doublePlay == 0) {
+            doublePlay = 1;
+            $("#doublePlay_btn").removeClass("btn-outline-primary");
+            $("#doublePlay_btn").addClass("btn-primary");
+            $("#doublePlay_btn").html("趨前守備 已開啟");
+        } else {
+            doublePlay = 0;
+            $("#doublePlay_btn").removeClass("btn-primary");
+            $("#doublePlay_btn").addClass("btn-outline-primary");
+            $("#doublePlay_btn").html("趨前守備");
+        }
     } else {
-        doublePlay = 0;
-        $("#doublePlay_btn").removeClass("btn-primary");
-        $("#doublePlay_btn").addClass("btn-outline-primary");
-        $("#doublePlay_btn").html("雙殺打");
+        if (doublePlay == 0) {
+            doublePlay = 1;
+            $("#doublePlay_btn").removeClass("btn-outline-primary");
+            $("#doublePlay_btn").addClass("btn-primary");
+            $("#doublePlay_btn").html("雙殺打 已開啟");
+        } else {
+            doublePlay = 0;
+            $("#doublePlay_btn").removeClass("btn-primary");
+            $("#doublePlay_btn").addClass("btn-outline-primary");
+            $("#doublePlay_btn").html("雙殺打");
+        }
     }
     $("#pitcherInfoClose").click();
 });
@@ -644,24 +729,45 @@ function game(result) {
                 result = "";
             } else if (result == "go") {
                 result = "";
-                if (doublePlay == 1) {
-                    pit[0].Pitcher.dpPit++;
-                    pit[0].Pitcher.o++;
-                    atBat[0].Batter.dp++;
-                    out++;
-                    runnerBase.shift();
-                    runner.shift();
-                    doublePlay = 0;
-                    $("#doublePlay_btn").removeClass("btn-primary");
-                    $("#doublePlay_btn").addClass("btn-outline-primary");
-                    $("#doublePlay_btn").html("雙殺打");
-                    for (i = 1; i <= 3; i++) {
-                        $(`#base_${i}`).html("");
+                if (out <= 1) {
+                    if ($("#ruleSelect").val() == 2 && doublePlay == 0) {
+                        if (runnerBase[runnerBase.length - 1] == 1) {
+                            pit[0].Pitcher.dpPit++;
+                            pit[0].Pitcher.o++;
+                            atBat[0].Batter.dp++;
+                            out++;
+                            runnerBase.pop();
+                            runner.pop();
+                            for (i = 1; i <= 3; i++) {
+                                $(`#base_${i}`).html("");
+                            }
+                            runnerBase.forEach(function (element, index, array) {
+                                $(`#base_${array[index]}`).html(runner[index][0].serialNum);
+                            });
+                        }
+                    } else if (doublePlay == 1) {
+                        if ($("#ruleSelect").val() == 2) {
+                            $("#doublePlay_btn").html("趨前守備");
+                        } else {
+                            $("#doublePlay_btn").html("雙殺打");
+                        }
+                        pit[0].Pitcher.dpPit++;
+                        pit[0].Pitcher.o++;
+                        atBat[0].Batter.dp++;
+                        out++;
+                        doublePlay = 0;
+                        runnerBase.shift();
+                        runner.shift();
+                        $("#doublePlay_btn").removeClass("btn-primary");
+                        $("#doublePlay_btn").addClass("btn-outline-primary");
+                        for (i = 1; i <= 3; i++) {
+                            $(`#base_${i}`).html("");
+                        }
+                        runnerBase.forEach(function (element, index, array) {
+                            array[index]++;
+                            $(`#base_${array[index]}`).html(runner[index][0].serialNum);
+                        });
                     }
-                    runnerBase.forEach(function (element, index, array) {
-                        array[index]++;
-                        $(`#base_${array[index]}`).html(runner[index][0].serialNum);
-                    });
                 }
             } else if (result == "ao") {
                 result = "";
@@ -868,27 +974,29 @@ function game(result) {
 //新舊規則切換
 $(".flyArea_power_fly_out_btn_1").hide();
 $(".flyArea_power_fly_out_btn_2").hide();
-// $("#scoreboard_form_submit").click(function () {
-//     if ($("#ruleSelect").val() == 2) {
-//         $("#ground_area_1").html("滾地出局區<br>犧牲觸擊成功區");
-//         $("#ground_area_2").html("滾地出局區<br>犧牲觸擊失敗區");
-//         $("#fly_area_1").html("直接一壘安打區<br>強力飛球區<br>(二三壘跑者推進)");
-//         $("#fly_area_2").html("直接一壘安打區<br>強力飛球區<br>(三壘跑者推進)");
-//         $(".flyArea_power_fly_out_btn_1").show();
-//         $(".flyArea_power_fly_out_btn_2").show();
-//         $("#sacrificeFly_btn").hide();
-//     }
-// })
+$("#scoreboard_form_submit").click(function () {
+    if ($("#ruleSelect").val() == 2) {
+        $("#ground_area_1").html("滾地出局區<br>(一壘雙殺，二三壘推進)<br>犧牲觸擊成功區");
+        $("#ground_area_2").html("滾地出局區<br>(一壘雙殺，二三壘不動)<br>犧牲觸擊失敗區");
+        $("#fly_area_1").html("直接一壘安打區<br>強力飛球區<br>(二三壘跑者推進)");
+        $("#fly_area_2").html("直接一壘安打區<br>強力飛球區<br>(三壘跑者推進)");
+        $(".flyArea_power_fly_out_btn_1").show();
+        $(".flyArea_power_fly_out_btn_2").show();
+        $("#sacrificeFly_btn").hide();
+        $("#doublePlay_btn").html("趨前守備");
+    }
+})
 
 //新規則測試
 // $("#ruleSelect").val("2");
-// $("#ground_area_1").html("滾地出局區<br>犧牲觸擊成功區");
-// $("#ground_area_2").html("滾地出局區<br>犧牲觸擊失敗區");
+// $("#ground_area_1").html("滾地出局區<br>(一壘雙殺，二三壘推進)<br>犧牲觸擊成功區");
+// $("#ground_area_2").html("滾地出局區<br>(一壘雙殺，二三壘不動)<br>犧牲觸擊失敗區");
 // $("#fly_area_1").html("直接一壘安打區<br>強力飛球區<br>(二三壘跑者推進)");
 // $("#fly_area_2").html("直接一壘安打區<br>強力飛球區<br>(三壘跑者推進)");
 // $(".flyArea_power_fly_out_btn_1").show();
 // $(".flyArea_power_fly_out_btn_2").show();
 // $("#sacrificeFly_btn").hide();
+// $("#doublePlay_btn").html("趨前守備");
 //新規則測試
 
 

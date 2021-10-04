@@ -80,13 +80,13 @@
                                     <option value="9" selected>9</option>
                                 </select>
                             </div>
-                            <!-- <div class="col-6">
+                            <div class="col-6">
                                 <label for="ruleSelect" class="form-label">使用規則</label>
                                 <select id="ruleSelect" class="form-select" aria-label="ruleSelect">
                                     <option value="1" selected>舊規則</option>
                                     <option value="2">新規則</option>
                                 </select>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                     <div class="bg-info bg-opacity-25 py-3 px-3">
@@ -330,19 +330,19 @@
                         <div class="row">
                             <div id="ground_area_1" class="col-6 scoreboard_ground_area scoreboard_elements">
                                 滾地出局區</div>
-                            <div class="modal fade" id="newGroundOutBtn" tabindex="-1" data-bs-backdrop="static"
-                                ariadata-bs-backdrop="static" -labelledby="newGroundOutBtnLabel" aria-hidden="true">
+                            <div class="modal fade" id="newGroundOut" tabindex="-1" data-bs-backdrop="static"
+                                ariadata-bs-backdrop="static" -labelledby="newGroundOutLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content newGroundOutBtn">
+                                    <div class="modal-content newGroundOut">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="newGroundOutBtnLabel">請選擇滾地球種類</h5>
-                                            <button type="button" id="newGroundOutBtnClose" class="btn-close"
+                                            <h5 class="modal-title" id="newGroundOutLabel">請選擇滾地球種類</h5>
+                                            <button type="button" id="newGroundOutClose" class="btn-close"
                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body d-flex justify-content-evenly">
-                                            <button type="button" class="btn btn-outline-info ground_out"
+                                            <button type="button" class="btn btn-outline-info newGroundOutLeft"
                                                 style="color: #000000;">滾地球出局</button>
-                                            <button id="sacrificeHit_btn" type="button" class="btn btn-outline-success"
+                                            <button type="button" class="btn btn-outline-success sacrificeHit_btn"
                                                 style="color: #000000;">犧牲觸擊</button>
                                         </div>
                                         <div class="modal-footer">
@@ -352,7 +352,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="ground_area_2" class="col-6 scoreboard_ground_area scoreboard_elements ground_out">
+                            <div id="ground_area_2" class="col-6 scoreboard_ground_area scoreboard_elements">
                                 滾地出局區</div>
                         </div>
                         <div class="row">
@@ -631,6 +631,31 @@
                             <div class="col-6 m-auto d-flex justify-content-center">
                                 <button type="button" id="ground_out_btn" class="btn btn-primary"
                                     data-bs-toggle="tooltip" data-bs-placement="top" title="滾地出局">GO</button>
+                                <div class="modal fade" id="newGroundOutBtn" tabindex="-1" data-bs-backdrop="static"
+                                    ariadata-bs-backdrop="static" -labelledby="newGroundOutBtnLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content newGroundOutBtn">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="newGroundOutBtnLabel">請選擇滾地球種類</h5>
+                                                <button type="button" id="newGroundOutBtnClose" class="btn-close"
+                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body d-flex justify-content-evenly">
+                                                <button type="button" class="btn btn-outline-info newGroundOutLeft"
+                                                    style="color: #000000;">滾地出局區<br>(一壘雙殺，<br>二三壘推進)</button>
+                                                <button id="newGroundOutRight" type="button"
+                                                    class="btn btn-outline-info"
+                                                    style="color: #000000;">滾地出局區<br>(一壘雙殺，<br>二三壘不動)</button>
+                                                <button type="button" class="btn btn-outline-success sacrificeHit_btn"
+                                                    style="color: #000000;">犧牲觸擊</button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                    style="color: #ffffff;">取消</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-6 m-auto d-flex justify-content-center">
                                 <button type="button" id="fly_out_btn" class="btn btn-info" data-bs-toggle="tooltip"
