@@ -12,6 +12,10 @@ let runnerToHome = 0;
 let out = 0;
 //打擊結果
 let result = "";
+//PA log
+let paLog = [];
+//Game log
+let gameLog = [];
 //目前投手
 let pit = [];
 //已換下投手
@@ -61,6 +65,7 @@ let gameEnd = new bootstrap.Modal(document.getElementById('gameEnd'));
 $(".strike_area").click(function () {
     s++;
     pit[0].Pitcher.strike++;
+    paLog.push("Strike");
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     if (s == 1) {
         $("#strike_one").addClass("scoreboard_ballStrikeOn");
@@ -70,6 +75,7 @@ $(".strike_area").click(function () {
         pit[0].Pitcher.k++;
         pit[0].Pitcher.o++;
         atBat[0].Batter.so++;
+        paLog.push("Strikeout");
         $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
         result = "so";
         game(result);
@@ -78,6 +84,7 @@ $(".strike_area").click(function () {
 //界外
 $(".foul_area").click(function () {
     pit[0].Pitcher.strike++;
+    paLog.push("Foul");
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     if (s == 0) {
         $("#strike_one").addClass("scoreboard_ballStrikeOn");
@@ -90,6 +97,7 @@ $(".foul_area").click(function () {
 //壞球
 $(".ball_area").click(function () {
     b++;
+    paLog.push("Ball");
     pit[0].Pitcher.ball++;
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     if (b == 1) {
@@ -101,6 +109,7 @@ $(".ball_area").click(function () {
     } else if (b == 4) {
         pit[0].Pitcher.bbPit++;
         atBat[0].Batter.bb++;
+        paLog.push("Walk");
         $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
         result = "bb";
         game(result);
@@ -111,6 +120,7 @@ $("#single_area").click(function () {
     atBat[0].Batter.single++;
     pit[0].Pitcher.h++;
     pit[0].Pitcher.strike++;
+    paLog.push("Single");
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     doublePlay = 0;
     $("#doublePlay_btn").removeClass("btn-primary");
@@ -143,6 +153,7 @@ $("#double_area").click(function () {
     atBat[0].Batter.double++;
     pit[0].Pitcher.h++;
     pit[0].Pitcher.strike++;
+    paLog.push("Double");
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     doublePlay = 0;
     $("#doublePlay_btn").removeClass("btn-primary");
@@ -163,6 +174,7 @@ $("#triple_area").click(function () {
     atBat[0].Batter.triple++;
     pit[0].Pitcher.h++;
     pit[0].Pitcher.strike++;
+    paLog.push("Triple");
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     doublePlay = 0;
     $("#doublePlay_btn").removeClass("btn-primary");
@@ -184,6 +196,7 @@ $("#homerun_area").click(function () {
     pit[0].Pitcher.h++;
     pit[0].Pitcher.hr++;
     pit[0].Pitcher.strike++;
+    paLog.push("Homerun");
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     doublePlay = 0;
     $("#doublePlay_btn").removeClass("btn-primary");
@@ -210,6 +223,7 @@ function groundOut() {
     pit[0].Pitcher.strike++;
     pit[0].Pitcher.goPit++;
     atBat[0].Batter.go++;
+    paLog.push("Ground Out");
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     sacrificeFly = 0;
     $("#sacrificeFly_btn").removeClass("btn-primary");
@@ -320,6 +334,7 @@ $(".sacrificeHit_btn").click(function () {
         $(`#base_${element}`).html(runner[index][0].serialNum);
     });
     atBat[0].Batter.sh++;
+    paLog.push("Sacrifice Hit");
     groundOut();
 });
 //飛球
@@ -328,6 +343,7 @@ function flyOut() {
     pit[0].Pitcher.strike++;
     pit[0].Pitcher.aoPit++;
     atBat[0].Batter.ao++;
+    paLog.push("Fly Out");
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
     result = "ao";
     game(result);
@@ -367,6 +383,7 @@ $(".flyArea_power_fly_out_btn_1").click(function () {
             runner[0][0].Batter.runs++;
             atBat[0].Batter.rbi++;
             atBat[0].Batter.sf++;
+            paLog.push("Sacrifice Fly");
             runnerBase.shift();
             runner.shift();
             if (halfInningCount % 2 == 1) {
@@ -408,6 +425,7 @@ $(".flyArea_power_fly_out_btn_2").click(function () {
         atBat[0].Batter.sf++;
         runnerBase.shift();
         runner.shift();
+        paLog.push("Sacrifice Fly");
         if (halfInningCount % 2 == 1) {
             awayPoint++;
             awayPointList[inningCount - 1]++;
@@ -645,6 +663,7 @@ function changePitcherSubmit() {
     $("#newPitcher").val("");
     $("#pitcher_area").html(pit[0].serialNum);
     $("#pitcher_status").html("投手：" + pit[0].name + " 球數：" + pit[0].Pitcher.pitchNum() + " (好" + pit[0].Pitcher.strike + "：壞" + pit[0].Pitcher.ball + ")");
+    paLog.push("Replace pitcher:" + pit[0].serialNum);
     if (halfInningCount % 2 == 1) {
         $("#home_pitcher").html("(" + homePit[0].serialNum + ")" + homePit[0].name);
     } else {
@@ -720,6 +739,11 @@ function game(result) {
         $("#batter_status").html("打者：" + atBat[0].name + " AB:" + atBat[0].Batter.ab() + " ,H:" + atBat[0].Batter.h() + " ,BB:" + atBat[0].Batter.bb + " ,SO:" + atBat[0].Batter.so);
         $("#batter_area").html(atBat[0].serialNum);
         $("#base_4").html(atBat[0].serialNum);
+        paLog.push("Inning:" + inningCount, halfInningCount % 2 == 1 ? "top" : "bottom", "out:" + out);
+        runnerBase.forEach(function (element, index) {
+            paLog.push("#" + runner[index][0].serialNum + " at " + runnerBase[index] + " base");
+        });
+        paLog.push("Pitcher:" + pit[0].serialNum, "Batter:" + atBat[0].serialNum);
     }
     if (result !== "") {
         s = 0;
@@ -735,6 +759,7 @@ function game(result) {
                             pit[0].Pitcher.dpPit++;
                             pit[0].Pitcher.o++;
                             atBat[0].Batter.dp++;
+                            paLog.push("DoublePlay");
                             out++;
                             runnerBase.pop();
                             runner.pop();
@@ -754,6 +779,7 @@ function game(result) {
                         pit[0].Pitcher.dpPit++;
                         pit[0].Pitcher.o++;
                         atBat[0].Batter.dp++;
+                        paLog.push("DoublePlay");
                         out++;
                         doublePlay = 0;
                         runnerBase.shift();
@@ -779,6 +805,7 @@ function game(result) {
                     runner[0][0].Batter.runs++;
                     atBat[0].Batter.rbi++;
                     atBat[0].Batter.sf++;
+                    paLog.push("Sacrifice Fly");
                     runnerBase.shift();
                     runner.shift();
                     sacrificeFly = 0;
@@ -810,6 +837,17 @@ function game(result) {
             out++;
             bat.push(atBat[0]);
             atBat = [bat.shift()];
+            runnerBase.forEach(function (element, index) {
+                paLog.push("#" + runner[index][0].serialNum + " at " + runnerBase[index] + " base");
+            });
+            paLog.push("HomePoint " + homePoint + " : AwayPoint " + awayPoint);
+            gameLog.push(paLog);
+            paLog = [];
+            paLog.push("Inning:" + inningCount, halfInningCount % 2 == 1 ? "top" : "bottom", "out:" + out);
+            runnerBase.forEach(function (element, index) {
+                paLog.push("#" + runner[index][0].serialNum + " at " + runnerBase[index] + " base");
+            });
+            paLog.push("Pitcher:" + pit[0].serialNum, "Batter:" + atBat[0].serialNum);
             $("#batter_status").html("打者：" + atBat[0].name + " AB:" + atBat[0].Batter.ab() + " ,H:" + atBat[0].Batter.h() + " ,BB:" + atBat[0].Batter.bb + " ,SO:" + atBat[0].Batter.so);
             $("#batter_area").html(atBat[0].serialNum);
             $("#base_4").html(atBat[0].serialNum);
@@ -909,6 +947,17 @@ function game(result) {
                 });
                 result = "";
             }
+            runnerBase.forEach(function (element, index) {
+                paLog.push("#" + runner[index][0].serialNum + " at " + runnerBase[index] + " base");
+            });
+            paLog.push("HomePoint " + homePoint + " : AwayPoint " + awayPoint);
+            gameLog.push(paLog);
+            paLog = [];
+            paLog.push("Inning:" + inningCount, halfInningCount % 2 == 1 ? "top" : "bottom", "out:" + out);
+            runnerBase.forEach(function (element, index) {
+                paLog.push("#" + runner[index][0].serialNum + " at " + runnerBase[index] + " base");
+            });
+            paLog.push("Pitcher:" + pit[0].serialNum, "Batter:" + atBat[0].serialNum);
         }
     }
 
@@ -927,6 +976,7 @@ function game(result) {
         atBat = [];
         runner = [];
         runnerBase = [];
+        paLog = [];
         for (i = 1; i <= 3; i++) {
             $(`#base_${i}`).html("");
         }
